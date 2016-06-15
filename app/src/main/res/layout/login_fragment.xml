@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/login_button_frame"
-        android:text="@string/login_button"
+        android:text="@string/login_button_register"
         android:textColor="@android:color/white"/>
 
 </LinearLayout>
