@@ -1,7 +1,9 @@
 package com.secretrepository.app.secret;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,13 +22,10 @@ import java.util.List;
 /**
  * Created by chenguihua on 2016/6/6.
  */
-public class SecretFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class SecretFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener{
     private ListView mListView;
     private SecretListAdapter mAdapter;
-
-    public interface HostInterface {
-        public void enterPersonalView();
-    }
+    private FloatingActionButton mfloatingActionButton;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,6 +36,8 @@ public class SecretFragment extends Fragment implements AdapterView.OnItemClickL
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.secret_fragment, container, false);
         mListView = (ListView) view.findViewById(R.id.secret_list);
+        mfloatingActionButton = (FloatingActionButton) view.findViewById(R.id.fab);
+        mfloatingActionButton.setOnClickListener(this);
         return view;
     }
 
@@ -50,10 +51,22 @@ public class SecretFragment extends Fragment implements AdapterView.OnItemClickL
     }
 
     @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fab:
+                Intent intent = new Intent(getActivity(), SecretEditActivity.class);
+                startActivity(intent);
+                break;
+        }
+    }
+
+    @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        AddressBean aBean = (AddressBean) parent.getItemAtPosition(position);
-        SecretDatabaseHelper helper = SecretDatabaseHelper.getInstance(getContext());
-        List<UserBean> uBean = (List<UserBean>) helper.userFindByAddressId(aBean.id);
-        ((HostInterface)getActivity()).enterPersonalView();
+        AddressBean bean = (AddressBean) parent.getItemAtPosition(position);
+        Intent intent = new Intent(getActivity(), SecretSingleActivity.class);
+        intent.putExtra("id", bean.id);
+        intent.putExtra("address", bean.address);
+        intent.putExtra("website", bean.website);
+        startActivity(intent);
     }
 }
