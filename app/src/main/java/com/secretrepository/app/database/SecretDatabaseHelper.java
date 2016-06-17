@@ -56,9 +56,8 @@ public class SecretDatabaseHelper {
         return db.insert(Tables.USER_TABLE, null, values);
     }
 
-
     public List<UserBean> userFindByAddressId(int addressId) {
-        List<UserBean> users = new ArrayList<UserBean>();
+        List<UserBean> users = new ArrayList<>();
         String selection = UserColumns.ADDRESS_ID + " = ?";
         Cursor cursor = db.query(Tables.USER_TABLE, null, selection,
                                 new String[] {String.valueOf(addressId)}, null, null, null);
@@ -73,6 +72,8 @@ public class SecretDatabaseHelper {
         }
         return users;
     }
+
+
 
 
     private long addressInsert(String addressName, String website) {

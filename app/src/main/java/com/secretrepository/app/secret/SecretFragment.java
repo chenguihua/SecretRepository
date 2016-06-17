@@ -14,10 +14,8 @@ import android.widget.ListView;
 import com.secretrepository.app.R;
 
 import com.secretrepository.app.database.SecretDatabaseHelper;
-import com.secretrepository.app.database.SecretDatabaseHelper.UserBean;
 import com.secretrepository.app.database.SecretDatabaseHelper.AddressBean;
 
-import java.util.List;
 
 /**
  * Created by chenguihua on 2016/6/6.
