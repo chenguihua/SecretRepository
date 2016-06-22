@@ -6,11 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.secretrepository.app.R;
 import com.secretrepository.app.database.SecretDatabaseHelper;
 import com.secretrepository.app.database.SecretDatabaseHelper.UserBean;
@@ -31,9 +28,10 @@ public class SecretSingleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.person_fragment);
         LinearLayout cardContainer = (LinearLayout)findViewById(R.id.card_container);
-
         Intent intent = getIntent();
         int id = intent.getIntExtra("id", 0);
+        String address = intent.getStringExtra("address");
+        getSupportActionBar().setTitle(address);
         SecretDatabaseHelper helper = SecretDatabaseHelper.getInstance(getApplicationContext());
         if (id == 0) {
             Log.e(TAG, "address id not found");
@@ -53,15 +51,10 @@ public class SecretSingleActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Intent intent = getIntent();
         if (beans.size() > 0) {
-            String address = intent.getStringExtra("address");
-            String website = intent.getStringExtra("website");
             for (int i = 0; i < beans.size(); i++) {
                 ((TextView)mCardList.get(i).findViewById(R.id.single_username)).setText(beans.get(i).username);
                 ((TextView)mCardList.get(i).findViewById(R.id.single_password)).setText(beans.get(i).password);
-                ((TextView)mCardList.get(i).findViewById(R.id.single_address)).setText(address);
-                ((TextView)mCardList.get(i).findViewById(R.id.single_website)).setText(website);
             }
         }
     }

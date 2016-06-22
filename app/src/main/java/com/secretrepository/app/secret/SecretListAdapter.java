@@ -1,6 +1,7 @@
 package com.secretrepository.app.secret;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,18 +48,24 @@ public class SecretListAdapter extends BaseAdapter{
             holder = new ViewHolder();
             view = mInflater.inflate(R.layout.address_item, null);
             holder.imageView = (ImageView)view.findViewById(R.id.item_image);
-            holder.textView = (TextView)view.findViewById(R.id.item_title);
+            holder.title = (TextView)view.findViewById(R.id.item_title);
+            holder.description = (TextView)view.findViewById(R.id.item_description);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
         }
-        holder.textView.setText(mData.get(i).address);
+
+        holder.title.setText(mData.get(i).address);
+        if (!TextUtils.isEmpty(mData.get(i).website)) {
+            holder.description.setText("网址： " + mData.get(i).website);
+        }
         return view;
     }
 
     public final class ViewHolder {
         ImageView imageView;
-        TextView textView;
+        TextView title;
+        TextView description;
     }
 
 }
