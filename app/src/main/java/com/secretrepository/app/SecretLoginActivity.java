@@ -2,34 +2,31 @@ package com.secretrepository.app;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
+import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputLayout;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.secretrepository.app.crypt.MD5Crypt;
 import com.secretrepository.app.util.Utils;
 
+
 /**
  * Created by chenguihua on 2016/6/6.
  */
-public class SecretLoginActivity extends Activity implements View.OnClickListener {
+public class SecretLoginActivity extends SecretBaseActivity implements View.OnClickListener {
 
-    private static final int VERIFY_FAILED = 0;
-    private static final int VERIFY_SUCCESS = 1;
+    private final static String KEY_NAME = "account";
+    private final static String KEY_PASSWORD = "password";
 
-    private EditText mAccount;
-    private EditText mPassword;
-    private Button mLoginButton;
+    TextInputLayout usernameWrapper;
+    TextInputLayout passwordWrapper;
+    private Button loginButton;
 
     private boolean hasRegistered = false;
 
@@ -38,45 +35,36 @@ public class SecretLoginActivity extends Activity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
-//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-//        }
 
-        setContentView(R.layout.login_layout);
+        setContentView(R.layout.activity_login);
 
-//        final View rootView = findViewById(R.id.login_root_view);
-//        rootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-//            @Override
-//            public void onGlobalLayout() {
-//                int globalHeight = rootView.getRootView().getHeight();
-//                int heightDiff = globalHeight - rootView.getHeight();
-//                if (heightDiff > globalHeight/3) {
-//                }
-//            }
-//        });
-        mAccount = (EditText) findViewById(R.id.account);
-        mPassword = (EditText) findViewById(R.id.password);
-        mLoginButton = (Button) findViewById(R.id.login);
-        mLoginButton.setOnClickListener(this);
+
+
+        usernameWrapper = (TextInputLayout) findViewById(R.id.usernameWrapper);
+        passwordWrapper = (TextInputLayout) findViewById(R.id.passwordWrapper);
+        usernameWrapper.setHint("Username");
+        passwordWrapper.setHint("Password");
+
+        loginButton = (Button) findViewById(R.id.btn_login);
+        loginButton.setOnClickListener(this);
     }
+
 
     @Override
     public void onResume() {
         super.onResume();
-        SharedPreferences sharedPreferences = getSharedPreferences(SecretActivity.PREFERENCE_NAME, Activity.MODE_PRIVATE);
-        hasRegistered = sharedPreferences.contains("account");
-        mLoginButton.setText(hasRegistered ? getResources().getString(R.string.login_button_register) : getResources().getString(R.string.login_button_unregister));
+        SharedPreferences sharedPreferences = getSharedPreferences(SecretMainActivity.PREFERENCE_NAME, Activity.MODE_PRIVATE);
+        hasRegistered = sharedPreferences.contains(KEY_NAME);
+        loginButton.setText(hasRegistered ? getResources().getString(R.string.login_button_register) : getResources().getString(R.string.login_button_unregister));
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.login:
+            case R.id.btn_login:
                 Utils.hideInputMethod(getCurrentFocus());
                 if (!hasRegistered) {
                     handleRegisterEvent();
-                    onVerify();
                 } else {
                     handleLoginEvent();
                 }
@@ -84,53 +72,65 @@ public class SecretLoginActivity extends Activity implements View.OnClickListene
         }
     }
 
-    public void onVerify() {
-        setResult(RESULT_OK);
+    public void pass() {
+        Intent intent = new Intent(this, SecretMainActivity.class);
+        startActivity(intent);
         finish();
     }
 
-
+    /**
+     * Login
+     */
     private void handleLoginEvent() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SecretActivity.PREFERENCE_NAME, Context.MODE_PRIVATE);
-        String name = sharedPreferences.getString("account", "");
-        String password = sharedPreferences.getString("password", "");
+        usernameWrapper.setError("");
+        passwordWrapper.setError("");
+        SharedPreferences sharedPreferences = getSharedPreferences(SecretMainActivity.PREFERENCE_NAME, Context.MODE_PRIVATE);
+        String name = sharedPreferences.getString(KEY_NAME, "");
+        String password = sharedPreferences.getString(KEY_PASSWORD, "");
 
-        if (name.equals(mAccount.getText().toString())
-                && password.equals(MD5Crypt.md5(mPassword.getText().toString()))) {
-            onVerify();
-        } else if (mAccount.getText().toString().equals("admin")
-                && mPassword.getText().toString().equals("123456")) {
-            onVerify();
-        } else {
-            final AlertDialog alertDialog = new AlertDialog.Builder(this)
-                    .setMessage("用户名或密码不正确")
-                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    }).create();
-            alertDialog.show();
+        if (name.equals(usernameWrapper.getEditText().getText().toString())
+                && password.equals(MD5Crypt.md5(passwordWrapper.getEditText().getText().toString()))) {
+            pass();
+        } else if (usernameWrapper.getEditText().getText().toString().equals("admin")
+                && passwordWrapper.getEditText().getText().toString().equals("123456")) {
+            pass();
+        }
+
+        if (TextUtils.isEmpty(usernameWrapper.getEditText().getText().toString())) {
+            usernameWrapper.setError("username is empty");
+        }
+
+        if (TextUtils.isEmpty(passwordWrapper.getEditText().getText().toString())) {
+            passwordWrapper.setError("password is empty");
+        }
+
+        if (!name.equals(usernameWrapper.getEditText().getText().toString())) {
+            usernameWrapper.setError("username is not exist");
+        } else if (!password.equals(MD5Crypt.md5(passwordWrapper.getEditText().getText().toString()))) {
+            passwordWrapper.setError("password is wrong");
         }
     }
 
+    /**
+     * Register
+     */
     private void handleRegisterEvent() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SecretActivity.PREFERENCE_NAME, Activity.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(SecretMainActivity.PREFERENCE_NAME, Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        String name = mAccount.getText().toString();
-        editor.putString("account", name);
-        editor.putString("password", MD5Crypt.md5(mPassword.getText().toString()));
+        String name = usernameWrapper.getEditText().getText().toString();
+        editor.putString(KEY_NAME, name);
+        editor.putString(KEY_PASSWORD, MD5Crypt.md5(passwordWrapper.getEditText().getText().toString()));
         editor.commit();
+        pass();
     }
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         if (event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
             if (System.currentTimeMillis() - exitTime > 2000) {
-                Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
                 exitTime = System.currentTimeMillis();
+                Snackbar.make(findViewById(R.id.login_root_view), "再按一次将退出", Snackbar.LENGTH_SHORT).show();
             } else {
-                setResult(RESULT_CANCELED, null);
                 finish();
             }
             return true;

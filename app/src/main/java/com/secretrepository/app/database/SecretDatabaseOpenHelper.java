@@ -13,21 +13,21 @@ public class SecretDatabaseOpenHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "secret.db";
 
     public interface Tables {
-        static final String USER_TABLE = "user_table";
-        static final String ADDRESS_TABLE = "address_table";
+        String USER_TABLE = "user_table";
+        String ADDRESS_TABLE = "address_table";
     }
 
     public interface UserColumns {
-        static final String _ID = "id";
-        static final String LOGIN_NAME = "user_name";
-        static final String LOGIN_PASSWORD = "password";
-        static final String ADDRESS_ID = "address_id";
+        String _ID = "id";
+        String LOGIN_NAME = "user_name";
+        String LOGIN_PASSWORD = "password";
+        String ADDRESS_ID = "address_id";
     }
 
     public interface AddressColumns {
-        static final String _ID = "id";
-        static final String ADDRESS_NAME = "address_name";
-        static final String WEBSITE = "website";
+        String _ID = "id";
+        String ADDRESS_NAME = "address_name";
+        String WEBSITE = "website";
     }
 
     public SecretDatabaseOpenHelper(Context context) {

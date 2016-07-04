@@ -10,12 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.secretrepository.app.R;
+import com.secretrepository.app.SecretBaseActivity;
 import com.secretrepository.app.database.SecretDatabaseHelper;
 
 /**
  * Created by chenguihua on 2016/6/16.
  */
-public class SecretEditActivity extends AppCompatActivity implements View.OnClickListener {
+public class SecretEditActivity extends SecretBaseActivity implements View.OnClickListener {
     private EditText mUserNameEdit;
     private EditText mPasswordEdit;
     private EditText mAddressEdit;
@@ -25,7 +26,7 @@ public class SecretEditActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_layout);
-        ((Button) findViewById(R.id.submit)).setOnClickListener(this);
+        findViewById(R.id.submit).setOnClickListener(this);
         mUserNameEdit = (EditText) findViewById(R.id.username);
         mPasswordEdit = (EditText) findViewById(R.id.password);
         mAddressEdit = (EditText) findViewById(R.id.address);
