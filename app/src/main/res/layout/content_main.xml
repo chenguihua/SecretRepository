@@ -8,7 +8,7 @@
     tools:context=".SecretMainActivity"
     tools:showIn="@layout/activity_main">
 
-    <ListView
+    <com.secretrepository.app.list.SwipeListView
         android:id="@+id/secret_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

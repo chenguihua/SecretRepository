@@ -1,4 +1,4 @@
-package com.secretrepository.app.secret;
+package com.secretrepository.app;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -9,8 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.secretrepository.app.R;
 import com.secretrepository.app.database.SecretDatabaseHelper.AddressBean;
+import com.secretrepository.app.list.SwipeItemLayout;
 
 import java.util.List;
 
@@ -18,10 +18,12 @@ import java.util.List;
  * Created by chenguihua on 2016/6/6.
  */
 public class SecretListAdapter extends BaseAdapter{
+    private Context mContext;
     private final LayoutInflater mInflater;
     private final List<AddressBean> mData;
 
     public SecretListAdapter(Context context, List<AddressBean> data) {
+        mContext = context;
         mInflater = LayoutInflater.from(context);
         mData = data;
     }

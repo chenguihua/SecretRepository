@@ -3,7 +3,6 @@ package com.secretrepository.app;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -14,8 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.secretrepository.app.database.SecretDatabaseHelper;
+import com.secretrepository.app.list.SwipeListView;
 import com.secretrepository.app.secret.SecretEditActivity;
-import com.secretrepository.app.secret.SecretListAdapter;
 import com.secretrepository.app.secret.SecretSingleActivity;
 
 public class SecretMainActivity extends SecretBaseActivity implements View.OnClickListener,
@@ -26,7 +25,7 @@ public class SecretMainActivity extends SecretBaseActivity implements View.OnCli
 
     public static final String PREFERENCE_NAME = "account";
 
-    private ListView mListView;
+    private SwipeListView mListView;
     private FloatingActionButton mFloatingActionButton;
 
     SecretListAdapter mAdapter;
@@ -39,7 +38,7 @@ public class SecretMainActivity extends SecretBaseActivity implements View.OnCli
         setSupportActionBar(toolbar);
         toolbar.setOnMenuItemClickListener(this);
 
-        mListView = (ListView) findViewById(R.id.secret_list);
+        mListView = (SwipeListView ) findViewById(R.id.secret_list);
         mFloatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
         mFloatingActionButton.setOnClickListener(this);
     }
