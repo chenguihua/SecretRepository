@@ -7,7 +7,7 @@ import android.view.inputmethod.InputMethodManager;
 /**
  * Created by chenguihua on 2016/6/6.
  */
-public class Utils {
+public class InputMethodUtils {
 
     public static void showInputMethod(View view) {
         final InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(

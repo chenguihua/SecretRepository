@@ -1,4 +1,4 @@
-package com.secretrepository.app;
+package com.secretrepository.app.main;
 
 import android.annotation.TargetApi;
 import android.os.Build;
@@ -9,11 +9,12 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+import com.secretrepository.app.R;
 
 /**
  * Created by chenguihua on 2016/7/4.
  */
-public class SecretBaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

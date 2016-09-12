@@ -1,4 +1,4 @@
-package com.secretrepository.app.crypt;
+package com.secretrepository.app.util.crypt;
 
 import android.util.Base64;
 import android.util.Log;

@@ -1,4 +1,4 @@
-package com.secretrepository.app;
+package com.secretrepository.app.main;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
@@ -10,22 +10,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 
+import com.secretrepository.app.R;
+import com.secretrepository.app.backup.RecordExport;
+import com.secretrepository.app.main.setting.SettingsActivity;
 import com.secretrepository.app.database.SecretDatabaseHelper;
-import com.secretrepository.app.list.SwipeListView;
-import com.secretrepository.app.secret.SecretEditActivity;
-import com.secretrepository.app.secret.SecretSingleActivity;
+import com.secretrepository.app.list.SwipeMenuListView;
+import com.secretrepository.app.main.Input.EditActivity;
+import com.secretrepository.app.main.show.SingleActivity;
 
-public class SecretMainActivity extends SecretBaseActivity implements View.OnClickListener,
+public class MainActivity extends BaseActivity implements View.OnClickListener,
         AdapterView.OnItemClickListener, Toolbar.OnMenuItemClickListener,
         SearchView.OnQueryTextListener{
-    public final static String TAG = "SecretMainActivity";
+    public final static String TAG = "MainActivity";
     private static final boolean DEBUG = true;
 
     public static final String PREFERENCE_NAME = "account";
 
-    private SwipeListView mListView;
+    private SwipeMenuListView mListView;
     private FloatingActionButton mFloatingActionButton;
 
     SecretListAdapter mAdapter;
@@ -38,7 +40,7 @@ public class SecretMainActivity extends SecretBaseActivity implements View.OnCli
         setSupportActionBar(toolbar);
         toolbar.setOnMenuItemClickListener(this);
 
-        mListView = (SwipeListView ) findViewById(R.id.secret_list);
+        mListView = (SwipeMenuListView) findViewById(R.id.secret_list);
         mFloatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
         mFloatingActionButton.setOnClickListener(this);
     }
@@ -74,10 +76,15 @@ public class SecretMainActivity extends SecretBaseActivity implements View.OnCli
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         switch(item.getItemId()) {
+            case R.id.action_backup:
+                new RecordExport().backup(this);
             case R.id.action_settings:
                 Intent intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.action_fortest:
+                Intent intent_fortest = new Intent(this, ForTestActivity.class);
+                startActivity(intent_fortest);
         }
         return true;
     }
@@ -86,7 +93,7 @@ public class SecretMainActivity extends SecretBaseActivity implements View.OnCli
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab:
-                Intent intent = new Intent(this, SecretEditActivity.class);
+                Intent intent = new Intent(this, EditActivity.class);
                 startActivity(intent);
                 break;
         }
@@ -95,7 +102,7 @@ public class SecretMainActivity extends SecretBaseActivity implements View.OnCli
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         SecretDatabaseHelper.AddressBean bean = (SecretDatabaseHelper.AddressBean) parent.getItemAtPosition(position);
-        Intent intent = new Intent(this, SecretSingleActivity.class);
+        Intent intent = new Intent(this, SingleActivity.class);
         intent.putExtra("id", bean.id);
         intent.putExtra("address", bean.address);
         intent.putExtra("website", bean.website);

@@ -6,7 +6,7 @@
     android:background="#e3e3e3"
     android:orientation="vertical"
     android:padding="@dimen/activity_horizontal_margin"
-    tools:context=".SecretLoginActivity">
+    tools:context=".main.login.LoginActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

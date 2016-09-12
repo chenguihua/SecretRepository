@@ -1,4 +1,4 @@
-package com.secretrepository.app.crypt;
+package com.secretrepository.app.util.crypt;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

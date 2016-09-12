@@ -1,4 +1,4 @@
-package com.secretrepository.app;
+package com.secretrepository.app.main;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -9,8 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.secretrepository.app.R;
 import com.secretrepository.app.database.SecretDatabaseHelper.AddressBean;
-import com.secretrepository.app.list.SwipeItemLayout;
 
 import java.util.List;
 
@@ -18,20 +18,23 @@ import java.util.List;
  * Created by chenguihua on 2016/6/6.
  */
 public class SecretListAdapter extends BaseAdapter{
-    private Context mContext;
     private final LayoutInflater mInflater;
     private final List<AddressBean> mData;
 
     public SecretListAdapter(Context context, List<AddressBean> data) {
-        mContext = context;
         mInflater = LayoutInflater.from(context);
         mData = data;
+    }
+
+    public void addSwipeMenu() {
+
     }
 
     @Override
     public int getCount() {
         return mData.size();
     }
+
 
     @Override
     public AddressBean getItem(int i) {
@@ -44,7 +47,7 @@ public class SecretListAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(int position, View view, ViewGroup viewGroup) {
         ViewHolder holder = null;
         if (view == null) {
             holder = new ViewHolder();
@@ -57,9 +60,9 @@ public class SecretListAdapter extends BaseAdapter{
             holder = (ViewHolder) view.getTag();
         }
 
-        holder.title.setText(mData.get(i).address);
-        if (!TextUtils.isEmpty(mData.get(i).website)) {
-            holder.description.setText("网址： " + mData.get(i).website);
+        holder.title.setText(mData.get(position).address);
+        if (!TextUtils.isEmpty(mData.get(position).website)) {
+            holder.description.setText("网址： " + mData.get(position).website);
         }
         return view;
     }

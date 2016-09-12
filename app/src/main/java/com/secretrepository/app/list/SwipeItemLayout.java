@@ -1,80 +1,111 @@
 package com.secretrepository.app.list;
 
+import android.content.Context;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.ViewDragHelper;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.secretrepository.app.util.DisplayUtil;
+import com.secretrepository.app.R;
+
 
 /**
- * Created by chenguihua on 2016/7/5.
+ * Created by chenguihua on 2016/9/6.
  */
 public class SwipeItemLayout extends LinearLayout {
-    public static String TAG = "SwipeItemLayout";
-    public static int SWIPE_CLOSE = 0;
-    public static int SWIPE_DRAGGING = 1;
-    public static int SWIPE_OPEN = 2;
+    private static final String TAG = "SwipeItemLayout";
 
-    public final int DEFAULT_MENU_WIDTH = 70;
+    // Default width of swpie menu
+    private final int DEFAULT_MENU_WIDTH = 60;
+    private final float AUTO_SCROLL_PERCENT = 0.5f;
 
-    private long mId;
-    private View mContentView, mMenuView;
-    SwipeItemCallbacks mSwipeCallback;
+    private View mContentView;
+    private View mMenuView;
 
     private ViewDragHelper mDragHelper;
 
-    public int menuWidth;
-    public int mStatus;
+    public SwipeItemLayout(Context context, View contentView) {
+        super(context);
+        initLayoutParams();
+        initViews(contentView);
 
-    public interface SwipeItemCallbacks {
-        public void onStatusChange(long mId, int status);
+        mDragHelper = ViewDragHelper.create(this, mCallBack);
     }
 
-    public SwipeItemLayout(long id, View contentView, View menuView, SwipeItemCallbacks callback) {
-        super(contentView.getContext());
-        mId = id;
+
+    private void initLayoutParams() {
+        AbsListView.LayoutParams lp = (AbsListView.LayoutParams) getLayoutParams();
+        if (lp == null) {
+            lp = new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            setLayoutParams(lp);
+        }
+        setOrientation(LinearLayout.HORIZONTAL);
+    }
+
+    private void initViews(View contentView) {
+        //View view = LayoutInflater.from(getContext()).inflate(contentLayoutId, null);
+        LayoutParams lpContent = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        addView(contentView, lpContent);
+
+        Button button = new Button(getContext());
+        button.setId(R.id.swipe_button_1);
+        button.setText("delete");
+        button.setBackgroundResource(android.R.color.holo_red_dark);
+        LayoutParams lpMenu = new LayoutParams(120, ViewGroup.LayoutParams.MATCH_PARENT);
+        addView(button, lpMenu);
+
         mContentView = contentView;
-        mMenuView = menuView;
-        mSwipeCallback = callback;
-        mDragHelper = ViewDragHelper.create(this, 15.0f, mCallback);
-        initLayout();
+        mMenuView = button;
     }
 
-    private void initLayout() {
-        setLayoutParams(new AbsListView.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-        mContentView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-        addView(mContentView);
-        menuWidth = DisplayUtil.dp2px(getContext(), DEFAULT_MENU_WIDTH);
-        mMenuView.setLayoutParams(new LinearLayout.LayoutParams(menuWidth, ViewGroup.LayoutParams.MATCH_PARENT));
-        addView(mMenuView);
+    public void setContentView(View mContentView) {
+        this.mContentView = mContentView;
     }
 
-    public void slideSwipeMenu(int dx) {
-        mMenuView.offsetLeftAndRight(dx);
+    public View getContentView() {
+        return mContentView;
     }
 
-    public void closeSwipeMenu() {
-        mDragHelper.smoothSlideViewTo(mContentView, 0, 0);
-        ViewCompat.postInvalidateOnAnimation(SwipeItemLayout.this);
-    }
-
-    public void cancel() {
-        mDragHelper.cancel();
+    public SwipeMenuListView getSwipeParent() {
+        View view = (View) getParent();
+        if (view instanceof SwipeMenuListView) {
+            return (SwipeMenuListView) view;
+        }
+        return null;
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return mDragHelper.shouldInterceptTouchEvent(ev);
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                mDragHelper.cancel();
+                break;
+        }
+
+        boolean interceptForDrag = mDragHelper.shouldInterceptTouchEvent(ev);
+        return interceptForDrag;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         mDragHelper.processTouchEvent(event);
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                View view = (View) getParent();
+                if (view instanceof SwipeMenuListView) {
+                    if (((SwipeMenuListView) view).isAnySwipeMenuOpen()) {
+                        return false;
+                    }
+                } else {
+                    throw new IllegalArgumentException("list item's parent is not SwipeMenuListView");
+                }
+                break;
+        }
         return true;
     }
 
@@ -85,7 +116,31 @@ public class SwipeItemLayout extends LinearLayout {
         }
     }
 
-    ViewDragHelper.Callback mCallback = new ViewDragHelper.Callback() {
+
+    private int computeValidLeft(int left) {
+        if (left > 0) return 0;
+        if (left < -mMenuView.getMeasuredWidth()) return -mMenuView.getMeasuredWidth();
+
+        return left;
+    }
+
+    private void onContentViewDragged(int dx) {
+        mMenuView.offsetLeftAndRight(dx);
+    }
+
+    public void closeSwipeMenu() {
+        if (mContentView.getLeft() != 0) {
+            mDragHelper.smoothSlideViewTo(mContentView, 0, 0);
+            ViewCompat.postInvalidateOnAnimation(SwipeItemLayout.this);
+        }
+    }
+
+    public boolean isSwipeMenuOpen() {
+        return mContentView.getLeft() < 0;
+    }
+
+
+    ViewDragHelper.Callback mCallBack = new ViewDragHelper.Callback() {
         @Override
         public boolean tryCaptureView(View child, int pointerId) {
             return child == mContentView;
@@ -93,49 +148,31 @@ public class SwipeItemLayout extends LinearLayout {
 
         @Override
         public int clampViewPositionHorizontal(View child, int left, int dx) {
-            if (left > 0) {
-                return 0;
-            } else if (left < -1 * menuWidth) {
-                return -1 * menuWidth;
-            }
-            return left;
+            return getSwipeParent().getSlideMode() == SwipeMenuListView.SlideMode.HORIZONTAL
+                    ? computeValidLeft(left) : 0;
+        }
+
+        @Override
+        public int clampViewPositionVertical(View child, int top, int dy) {
+            return 0;
         }
 
         @Override
         public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
-            super.onViewPositionChanged(changedView, left, top, dx, dy);
-            slideSwipeMenu(dx);
+            onContentViewDragged(dx);
             invalidate();
         }
 
         @Override
         public void onViewReleased(View releasedChild, float xvel, float yvel) {
-            if (Math.abs(mContentView.getLeft()) < menuWidth / 2) {
+            if (Math.abs(mContentView.getLeft()) > mMenuView.getMeasuredWidth() * AUTO_SCROLL_PERCENT) {
+                mDragHelper.smoothSlideViewTo(mContentView, -mMenuView.getMeasuredWidth(), 0);
+            } else {
                 mDragHelper.smoothSlideViewTo(mContentView, 0, 0);
-                ViewCompat.postInvalidateOnAnimation(SwipeItemLayout.this);
-            } else {
-                mDragHelper.smoothSlideViewTo(mContentView, -menuWidth, 0);
-                ViewCompat.postInvalidateOnAnimation(SwipeItemLayout.this);
-                Log.d("chen", "");
             }
-        }
-
-        @Override
-        public void onViewDragStateChanged(int state) {
-            if (mDragHelper.getViewDragState() == ViewDragHelper.STATE_IDLE) {
-                if (mContentView.getLeft() == 0) {
-                    mStatus = SWIPE_CLOSE;
-                } else {
-                    mStatus = SWIPE_OPEN;
-                }
-            } else {
-                mStatus = SWIPE_DRAGGING;
-            }
-
-            if (mSwipeCallback != null) {
-                mSwipeCallback.onStatusChange(mId, mStatus);
-            }
+            ViewCompat.postInvalidateOnAnimation(SwipeItemLayout.this);
         }
     };
+
 
 }

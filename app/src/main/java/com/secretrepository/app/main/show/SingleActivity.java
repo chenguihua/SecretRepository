@@ -1,15 +1,14 @@
-package com.secretrepository.app.secret;
+package com.secretrepository.app.main.show;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.secretrepository.app.R;
-import com.secretrepository.app.SecretBaseActivity;
+import com.secretrepository.app.main.BaseActivity;
 import com.secretrepository.app.database.SecretDatabaseHelper;
 import com.secretrepository.app.database.SecretDatabaseHelper.UserBean;
 
@@ -19,7 +18,7 @@ import java.util.List;
 /**
  * Created by chenguihua on 2016/6/15.
  */
-public class SecretSingleActivity extends SecretBaseActivity {
+public class SingleActivity extends BaseActivity {
     private static final String TAG = "tag";
     List<UserBean> beans;
     List<CardView> mCardList;

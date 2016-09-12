@@ -1,12 +1,14 @@
-package com.secretrepository.app;
+package com.secretrepository.app.main.setting;
 
-import android.app.Activity;
 import android.os.Bundle;
+
+import com.secretrepository.app.R;
+import com.secretrepository.app.main.BaseActivity;
 
 /**
  * Created by chenguihua on 2016/7/1.
  */
-public class SettingsActivity  extends SecretBaseActivity{
+public class SettingsActivity  extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

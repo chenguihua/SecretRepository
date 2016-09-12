@@ -1,22 +1,20 @@
-package com.secretrepository.app.secret;
+package com.secretrepository.app.main.Input;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.secretrepository.app.R;
-import com.secretrepository.app.SecretBaseActivity;
+import com.secretrepository.app.main.BaseActivity;
 import com.secretrepository.app.database.SecretDatabaseHelper;
 
 /**
  * Created by chenguihua on 2016/6/16.
  */
-public class SecretEditActivity extends SecretBaseActivity implements View.OnClickListener {
+public class EditActivity extends BaseActivity implements View.OnClickListener {
     private EditText mUserNameEdit;
     private EditText mPasswordEdit;
     private EditText mAddressEdit;

@@ -1,4 +1,4 @@
-package com.secretrepository.app;
+package com.secretrepository.app.main.login;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,14 +12,17 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
-import com.secretrepository.app.crypt.MD5Crypt;
-import com.secretrepository.app.util.Utils;
+import com.secretrepository.app.R;
+import com.secretrepository.app.util.crypt.MD5Crypt;
+import com.secretrepository.app.main.MainActivity;
+import com.secretrepository.app.main.BaseActivity;
+import com.secretrepository.app.util.InputMethodUtils;
 
 
 /**
  * Created by chenguihua on 2016/6/6.
  */
-public class SecretLoginActivity extends SecretBaseActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     private final static String KEY_NAME = "account";
     private final static String KEY_PASSWORD = "password";
@@ -53,7 +56,7 @@ public class SecretLoginActivity extends SecretBaseActivity implements View.OnCl
     @Override
     public void onResume() {
         super.onResume();
-        SharedPreferences sharedPreferences = getSharedPreferences(SecretMainActivity.PREFERENCE_NAME, Activity.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.PREFERENCE_NAME, Activity.MODE_PRIVATE);
         hasRegistered = sharedPreferences.contains(KEY_NAME);
         loginButton.setText(hasRegistered ? getResources().getString(R.string.login_button_register) : getResources().getString(R.string.login_button_unregister));
     }
@@ -62,7 +65,7 @@ public class SecretLoginActivity extends SecretBaseActivity implements View.OnCl
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
-                Utils.hideInputMethod(getCurrentFocus());
+                InputMethodUtils.hideInputMethod(getCurrentFocus());
                 if (!hasRegistered) {
                     handleRegisterEvent();
                 } else {
@@ -73,7 +76,7 @@ public class SecretLoginActivity extends SecretBaseActivity implements View.OnCl
     }
 
     public void pass() {
-        Intent intent = new Intent(this, SecretMainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
@@ -84,7 +87,7 @@ public class SecretLoginActivity extends SecretBaseActivity implements View.OnCl
     private void handleLoginEvent() {
         usernameWrapper.setError("");
         passwordWrapper.setError("");
-        SharedPreferences sharedPreferences = getSharedPreferences(SecretMainActivity.PREFERENCE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.PREFERENCE_NAME, Context.MODE_PRIVATE);
         String name = sharedPreferences.getString(KEY_NAME, "");
         String password = sharedPreferences.getString(KEY_PASSWORD, "");
 
@@ -115,7 +118,7 @@ public class SecretLoginActivity extends SecretBaseActivity implements View.OnCl
      * Register
      */
     private void handleRegisterEvent() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SecretMainActivity.PREFERENCE_NAME, Activity.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.PREFERENCE_NAME, Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         String name = usernameWrapper.getEditText().getText().toString();
         editor.putString(KEY_NAME, name);
