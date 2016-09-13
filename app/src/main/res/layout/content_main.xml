@@ -8,7 +8,7 @@
     tools:context=".main.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <com.secretrepository.app.list.SwipeMenuListView
+    <com.secretrepository.app.widget.swipelist.SwipeMenuListView
         android:id="@+id/secret_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

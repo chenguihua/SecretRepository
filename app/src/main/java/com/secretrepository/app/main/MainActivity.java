@@ -15,7 +15,7 @@ import com.secretrepository.app.R;
 import com.secretrepository.app.backup.RecordExport;
 import com.secretrepository.app.main.setting.SettingsActivity;
 import com.secretrepository.app.database.SecretDatabaseHelper;
-import com.secretrepository.app.list.SwipeMenuListView;
+import com.secretrepository.app.widget.swipelist.SwipeMenuListView;
 import com.secretrepository.app.main.Input.EditActivity;
 import com.secretrepository.app.main.show.SingleActivity;
 
@@ -67,6 +67,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     public boolean onQueryTextChange(String newText) {
+        mAdapter.getFilter().filter(newText);
         return false;
     }
 

@@ -1,5 +1,6 @@
-package com.secretrepository.app.list;
+package com.secretrepository.app.widget.swipelist;
 
+import android.app.admin.DeviceAdminInfo;
 import android.content.Context;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.ViewDragHelper;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.secretrepository.app.R;
+import com.secretrepository.app.util.DisplayUtil;
 
 
 /**
@@ -25,6 +27,9 @@ public class SwipeItemLayout extends LinearLayout implements View.OnClickListene
 
     private View mContentView;
     private View mMenuView;
+
+    float initialX;
+    float initialY;
 
     private ViewDragHelper mDragHelper;
 
@@ -56,7 +61,7 @@ public class SwipeItemLayout extends LinearLayout implements View.OnClickListene
         button.setText("delete");
         button.setBackgroundResource(android.R.color.holo_red_dark);
         button.setOnClickListener(this);
-        LayoutParams lpMenu = new LayoutParams(120, ViewGroup.LayoutParams.MATCH_PARENT);
+        LayoutParams lpMenu = new LayoutParams(DisplayUtil.dp2px(getContext(), DEFAULT_MENU_WIDTH), ViewGroup.LayoutParams.MATCH_PARENT);
         addView(button, lpMenu);
 
         mContentView = contentView;
@@ -104,6 +109,7 @@ public class SwipeItemLayout extends LinearLayout implements View.OnClickListene
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
         mDragHelper.processTouchEvent(event);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
@@ -112,8 +118,22 @@ public class SwipeItemLayout extends LinearLayout implements View.OnClickListene
                     if (((SwipeMenuListView) view).isAnySwipeMenuOpen()) {
                         return false;
                     }
+                    initialX = event.getX();
+                    initialY = event.getY();
                 } else {
                     throw new IllegalArgumentException("list item's parent is not SwipeMenuListView");
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                float deltaX = event.getX() - initialX;
+                float deltaY = event.getY() - initialY;
+                if (Math.abs(deltaX) < 5 && Math.abs(deltaY) < 5) {
+                    SwipeMenuListView  listview = getSwipeParent();
+                    if (listview != null) {
+                        int position = listview.getPositionForView(this);
+                        long id = listview.getItemIdAtPosition(position);
+                        listview.getOnItemClickListener().onItemClick(listview, this, position, id);
+                    }
                 }
                 break;
         }

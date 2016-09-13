@@ -1,4 +1,4 @@
-package com.secretrepository.app.list;
+package com.secretrepository.app.widget.swipelist;
 
 import android.content.Context;
 import android.view.View;

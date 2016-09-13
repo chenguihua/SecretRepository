@@ -1,16 +1,11 @@
-package com.secretrepository.app.list;
+package com.secretrepository.app.widget.swipelist;
 
 import android.content.Context;
 import android.database.DataSetObserver;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListAdapter;
-import android.widget.TextView;
 import android.widget.WrapperListAdapter;
-
-import com.secretrepository.app.R;
 
 /**
  * Created by chenguihua on 2016/7/5.
@@ -29,13 +24,11 @@ public class SwipeMenuListAdapter implements WrapperListAdapter {
 
     @Override
     public int getCount() {
-        Log.d(TAG, "getCount() returned: " + mAdapter.getCount());
         return mAdapter.getCount();
     }
 
     @Override
     public Object getItem(int position) {
-        Log.d(TAG, "getItem() returned: " + mAdapter.getItem(position));
         return mAdapter.getItem(position);
     }
 
@@ -46,23 +39,14 @@ public class SwipeMenuListAdapter implements WrapperListAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = null;
         if (convertView == null) {
-            holder = new ViewHolder();
             convertView = new SwipeItemLayout(mContext, mAdapter.getView(position, convertView, parent));
-            holder.action_btn = (Button) convertView.findViewById(R.id.swipe_button_1);
-            convertView.setTag(holder);
         } else {
             View view = mAdapter.getView(position, ((SwipeItemLayout) convertView).getContentView(), parent);
             ((SwipeItemLayout) convertView).setContentView(view);
-            holder = (ViewHolder) convertView.getTag();
         }
 
         return convertView;
-    }
-
-    class ViewHolder {
-        Button action_btn;
     }
 
     @Override
