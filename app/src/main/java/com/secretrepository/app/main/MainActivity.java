@@ -21,7 +21,8 @@ import com.secretrepository.app.main.show.SingleActivity;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener,
         AdapterView.OnItemClickListener, Toolbar.OnMenuItemClickListener,
-        SearchView.OnQueryTextListener{
+        SearchView.OnQueryTextListener,
+        SwipeMenuListView.OnSwipeMenuClickListener {
     public final static String TAG = "MainActivity";
     private static final boolean DEBUG = true;
 
@@ -51,6 +52,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,
         SecretDatabaseHelper helper = SecretDatabaseHelper.getInstance(this);
         mAdapter = new SecretListAdapter(this, helper.addressFindAll());
         mListView.setAdapter(mAdapter);
+        mListView.setOnSwipeMenuClickListener(this);
         mListView.setOnItemClickListener(this);
     }
 
@@ -78,6 +80,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,
         switch(item.getItemId()) {
             case R.id.action_backup:
                 new RecordExport().backup(this);
+                break;
             case R.id.action_settings:
                 Intent intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
@@ -87,6 +90,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,
                 startActivity(intent_fortest);
         }
         return true;
+    }
+
+    @Override
+    public void onSwipeMenuClick(View view, int position) {
+        SecretDatabaseHelper helper = SecretDatabaseHelper.getInstance(this);
+        helper.deleteByAddress(mAdapter.getItem(position).id);
+        mAdapter.update(helper.addressFindAll());
     }
 
     @Override

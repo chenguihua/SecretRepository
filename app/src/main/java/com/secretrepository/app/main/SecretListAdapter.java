@@ -19,22 +19,22 @@ import java.util.List;
  */
 public class SecretListAdapter extends BaseAdapter{
     private final LayoutInflater mInflater;
-    private final List<AddressBean> mData;
+    private List<AddressBean> mData;
 
     public SecretListAdapter(Context context, List<AddressBean> data) {
         mInflater = LayoutInflater.from(context);
         mData = data;
     }
 
-    public void addSwipeMenu() {
-
+    public void update(List<AddressBean> data) {
+        mData = data;
+        notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
         return mData.size();
     }
-
 
     @Override
     public AddressBean getItem(int i) {

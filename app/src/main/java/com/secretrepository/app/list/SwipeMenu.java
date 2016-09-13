@@ -8,7 +8,7 @@ import android.widget.Button;
  * Created by chenguihua on 2016/9/12.
  */
 public class SwipeMenu extends Button {
-    private final int DEFAULT_MENU_WIDTH = 60;
+    private static final int DEFAULT_MENU_WIDTH = 60;
 
     public SwipeMenu(Context context) {
         super(context);
@@ -16,7 +16,7 @@ public class SwipeMenu extends Button {
 
     public static class Builder{
         Context context;
-        int width = DEFAULT_MENU_WIDTH;
+        int width = SwipeMenu.DEFAULT_MENU_WIDTH;
         int backgroundResId;
         String text;
         View.OnClickListener clickListener;

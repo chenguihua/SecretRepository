@@ -47,6 +47,14 @@ public class SecretDatabaseHelper {
         userInsert(userName, password, (int) addressId);
     }
 
+    public void deleteByAddress(int id) {
+        List<UserBean> users = userFindByAddressId(id);
+        for (UserBean user : users) {
+            userDelete(user.id);
+        }
+        addressDelete(id);
+    }
+
 
     private long userInsert(String userName, String password, int addressId) {
         ContentValues values = new ContentValues();
@@ -54,6 +62,11 @@ public class SecretDatabaseHelper {
         values.put(UserColumns.LOGIN_PASSWORD, password);
         values.put(UserColumns.ADDRESS_ID, addressId);
         return db.insert(Tables.USER_TABLE, null, values);
+    }
+
+    private void userDelete(int id) {
+        String[] args = {String.valueOf(id)};
+        db.delete(Tables.USER_TABLE, "id=?", args);
     }
 
     public List<UserBean> userFindByAddressId(int addressId) {
@@ -73,14 +86,16 @@ public class SecretDatabaseHelper {
         return users;
     }
 
-
-
-
     private long addressInsert(String addressName, String website) {
         ContentValues values = new ContentValues();
         values.put(AddressColumns.ADDRESS_NAME, addressName);
         values.put(AddressColumns.WEBSITE, website);
         return db.insert(Tables.ADDRESS_TABLE, null, values);
+    }
+
+    public void addressDelete(int id) {
+        String[] args = {String.valueOf(id)};
+        db.delete(Tables.ADDRESS_TABLE, "id=?", args);
     }
 
     public List<AddressBean> addressFindAll() {
@@ -113,6 +128,8 @@ public class SecretDatabaseHelper {
         cursor.close();
         return result;
     }
+
+
 
     public final class UserBean {
         public int id;

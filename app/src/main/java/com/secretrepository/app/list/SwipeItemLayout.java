@@ -3,7 +3,6 @@ package com.secretrepository.app.list;
 import android.content.Context;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.ViewDragHelper;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,7 @@ import com.secretrepository.app.R;
 /**
  * Created by chenguihua on 2016/9/6.
  */
-public class SwipeItemLayout extends LinearLayout {
+public class SwipeItemLayout extends LinearLayout implements View.OnClickListener {
     private static final String TAG = "SwipeItemLayout";
 
     // Default width of swpie menu
@@ -56,6 +55,7 @@ public class SwipeItemLayout extends LinearLayout {
         button.setId(R.id.swipe_button_1);
         button.setText("delete");
         button.setBackgroundResource(android.R.color.holo_red_dark);
+        button.setOnClickListener(this);
         LayoutParams lpMenu = new LayoutParams(120, ViewGroup.LayoutParams.MATCH_PARENT);
         addView(button, lpMenu);
 
@@ -77,6 +77,17 @@ public class SwipeItemLayout extends LinearLayout {
             return (SwipeMenuListView) view;
         }
         return null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        SwipeMenuListView listview = getSwipeParent();
+        SwipeMenuListView.OnSwipeMenuClickListener listener = null;
+        if (listview != null && (listener = listview.getSwipeMenuClickListener()) != null) {
+            int position = listview.getPositionForView(this);
+            listener.onSwipeMenuClick(this, position);
+        }
+
     }
 
     @Override

@@ -21,8 +21,6 @@ public class SwipeMenuListAdapter implements WrapperListAdapter {
     private final ListAdapter mAdapter;
     private Context mContext;
 
-    public Action action;
-
 
     public SwipeMenuListAdapter(Context context, ListAdapter adapter) {
         mAdapter = adapter;
@@ -59,15 +57,6 @@ public class SwipeMenuListAdapter implements WrapperListAdapter {
             ((SwipeItemLayout) convertView).setContentView(view);
             holder = (ViewHolder) convertView.getTag();
         }
-
-        holder.action_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (action != null) {
-                    action.call(v, position);
-                }
-            }
-        });
 
         return convertView;
     }
@@ -121,7 +110,4 @@ public class SwipeMenuListAdapter implements WrapperListAdapter {
         return mAdapter.isEmpty();
     }
 
-    public interface Action {
-        void call(View view, int position);
-    }
 }

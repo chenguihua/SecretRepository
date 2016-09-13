@@ -21,6 +21,9 @@ public class SwipeMenuListView extends ListView {
 
     private int mTouchSlop;
 
+    private OnSwipeMenuClickListener mSwipeMenuClickListener;
+
+
     public SwipeMenuListView(Context context) {
         super(context);
         init();
@@ -46,6 +49,7 @@ public class SwipeMenuListView extends ListView {
         SwipeMenuListAdapter mAdapter = new SwipeMenuListAdapter(getContext(), adapter);
         super.setAdapter(mAdapter);
     }
+
 
     public SlideMode getSlideMode() {
         return mSlideMode;
@@ -138,6 +142,18 @@ public class SwipeMenuListView extends ListView {
 
     enum SlideMode {
         VERTICAL, HORIZONTAL, NONE
+    }
+
+    public interface OnSwipeMenuClickListener {
+        public void onSwipeMenuClick(View view, int position);
+    }
+
+    public void setOnSwipeMenuClickListener(OnSwipeMenuClickListener listener) {
+        mSwipeMenuClickListener = listener;
+    }
+
+    public OnSwipeMenuClickListener getSwipeMenuClickListener() {
+        return mSwipeMenuClickListener;
     }
 
 }
