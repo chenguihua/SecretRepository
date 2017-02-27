@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".main.MainActivity"
+            android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".main.Input.EditActivity" />
         <activity android:name=".main.show.SingleActivity" />

@@ -14,7 +14,7 @@ import android.widget.Button;
 
 import com.secretrepository.app.R;
 import com.secretrepository.app.util.crypt.MD5Crypt;
-import com.secretrepository.app.main.MainActivity;
+import com.secretrepository.app.MainActivity;
 import com.secretrepository.app.main.BaseActivity;
 import com.secretrepository.app.util.InputMethodUtils;
 
@@ -38,10 +38,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_login);
-
-
 
         usernameWrapper = (TextInputLayout) findViewById(R.id.usernameWrapper);
         passwordWrapper = (TextInputLayout) findViewById(R.id.passwordWrapper);
@@ -50,6 +47,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         loginButton = (Button) findViewById(R.id.btn_login);
         loginButton.setOnClickListener(this);
+        pass();
     }
 
 
