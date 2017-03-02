@@ -3,11 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_new"
-        android:title="新增"
-        app:showAsAction="never"/>
-
-    <item
         android:id="@+id/action_settings"
         android:title="设置"
         app:showAsAction="never" />

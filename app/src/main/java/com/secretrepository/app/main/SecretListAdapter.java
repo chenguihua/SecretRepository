@@ -70,10 +70,10 @@ public class SecretListAdapter extends BaseAdapter implements Filterable{
         ViewHolder holder = null;
         if (view == null) {
             holder = new ViewHolder();
-            view = mInflater.inflate(R.layout.address_item, null);
-            holder.imageView = (ImageView)view.findViewById(R.id.item_image);
-            holder.title = (TextView)view.findViewById(R.id.item_title);
-            holder.description = (TextView)view.findViewById(R.id.item_description);
+            view = mInflater.inflate(R.layout.data_item, null);
+//            holder.imageView = (ImageView)view.findViewById(R.id.item_image);
+//            holder.title = (TextView)view.findViewById(R.id.item_title);
+//            holder.description = (TextView)view.findViewById(R.id.item_description);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
