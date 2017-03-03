@@ -15,7 +15,7 @@ import android.widget.Button;
 import com.secretrepository.app.R;
 import com.secretrepository.app.util.crypt.MD5Crypt;
 import com.secretrepository.app.MainActivity;
-import com.secretrepository.app.main.BaseActivity;
+import com.secretrepository.app.BaseActivity;
 import com.secretrepository.app.util.InputMethodUtils;
 
 

@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.secretrepository.app.data.LoginMsg;
+
 import java.util.List;
 
 /**
@@ -13,10 +15,10 @@ import java.util.List;
  */
 
 public class DataListAdapter extends RecyclerView.Adapter<DataListAdapter.ViewHolder> {
-    private List<String> datas;
+    private List<LoginMsg> msgList;
 
-    public DataListAdapter(List<String> datas) {
-        this.datas = datas;
+    public DataListAdapter(List<LoginMsg> list) {
+        this.msgList = list;
     }
 
     @Override
@@ -29,12 +31,12 @@ public class DataListAdapter extends RecyclerView.Adapter<DataListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.textView.setText(datas.get(position));
+        holder.textView.setText(msgList.get(position).getTitle());
     }
 
     @Override
     public int getItemCount() {
-        return datas.size();
+        return msgList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

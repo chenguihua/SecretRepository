@@ -31,10 +31,9 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".main.Input.EditActivity" />
+        <activity android:name=".input.EditActivity" />
         <activity android:name=".main.show.SingleActivity" />
         <activity android:name=".main.setting.SettingsActivity"/>
-        <activity android:name=".main.ForTestActivity"/>
     </application>
 
 </manifest>

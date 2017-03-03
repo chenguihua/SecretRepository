@@ -3,7 +3,7 @@ package com.secretrepository.app.main.setting;
 import android.os.Bundle;
 
 import com.secretrepository.app.R;
-import com.secretrepository.app.main.BaseActivity;
+import com.secretrepository.app.BaseActivity;
 
 /**
  * Created by chenguihua on 2016/7/1.

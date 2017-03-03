@@ -1,4 +1,4 @@
-package com.secretrepository.app.main;
+package com.secretrepository.app;
 
 import android.annotation.TargetApi;
 import android.os.Build;
