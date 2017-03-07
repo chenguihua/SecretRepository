@@ -3,10 +3,9 @@
     android:id="@+id/login_root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#aae84e40"
     android:orientation="vertical"
     android:padding="@dimen/activity_horizontal_margin"
-    tools:context=".main.login.LoginActivity">
+    tools:context=".activity.login.LoginActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

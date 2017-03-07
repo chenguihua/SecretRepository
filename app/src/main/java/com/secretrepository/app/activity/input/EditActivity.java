@@ -1,4 +1,4 @@
-package com.secretrepository.app.input;
+package com.secretrepository.app.activity.input;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,19 +9,15 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.secretrepository.app.R;
-import com.secretrepository.app.BaseActivity;
+import com.secretrepository.app.main.base.BaseActivity;
 import com.secretrepository.app.data.LoginMsg;
-import com.secretrepository.app.data.source.LoginMsgRepository;
-import com.secretrepository.app.data.source.local.LoginMsgLocalDataSource;
 
-import java.io.Serializable;
 
 /**
  * Created by chenguihua on 2016/6/16.
  */
 public class EditActivity extends BaseActivity {
     public static final int REQUEST_CODE = 1;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

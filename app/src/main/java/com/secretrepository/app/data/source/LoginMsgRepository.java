@@ -31,7 +31,7 @@ public class LoginMsgRepository implements LoginMsgDataSource {
 
     @Override
     public void getAllMsgTitle(LoadAllMsgTitleCallBack callBack) {
-        //loginMsgLocalDataSource.getAllMsgTitle(callBack);
+        loginMsgLocalDataSource.getAllMsgTitle(callBack);
     }
 
     @Override

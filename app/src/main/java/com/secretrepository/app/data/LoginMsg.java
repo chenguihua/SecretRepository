@@ -14,6 +14,13 @@ public class LoginMsg implements Serializable{
     private String password;
     private String description;
 
+    /**
+     * Constructor to generate a UUID automatic
+     * @param title
+     * @param username
+     * @param password
+     * @param des
+     */
     public LoginMsg(String title, String username, String password, String des) {
         this(UUID.randomUUID().toString(), title, username, password, des);
     }

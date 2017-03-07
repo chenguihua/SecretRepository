@@ -1,5 +1,6 @@
-package com.secretrepository.app;
+package com.secretrepository.app.main;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -7,10 +8,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.secretrepository.app.R;
+import com.secretrepository.app.activity.setting.SettingsActivity;
+import com.secretrepository.app.main.base.BaseActivity;
+import com.secretrepository.app.main.fragment.list.DataListFragment;
+
 public class MainActivity extends BaseActivity {
     public final static String TAG = "MainActivity";
     public static final boolean DEBUG = true;
-    public static String PREFERENCE_NAME = "abc";
+    public static String PREFERENCE_NAME = "Login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +28,7 @@ public class MainActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_1);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu1);
 
         FragmentManager fragManager = getSupportFragmentManager();
         DataListFragment fragment = (DataListFragment) fragManager.findFragmentById(R.id.contentFrame);
@@ -42,13 +48,21 @@ public class MainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                break;
-            case R.id.action_backup:
-                break;
-            case R.id.action_debug:
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        DataListFragment fragment = (DataListFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
+        if (fragment != null && fragment.getSelectMessage() != null)
+        {
+            fragment.cancelSelectDeleteItem();
+            return;
+        }
+        super.onBackPressed();
+    }
 }

@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -19,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".main.login.LoginActivity"
+            android:name=".activity.login.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
             <intent-filter>
@@ -29,11 +30,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".input.EditActivity" />
-        <activity android:name=".main.show.SingleActivity" />
-        <activity android:name=".main.setting.SettingsActivity"/>
+        <activity android:name=".activity.input.EditActivity" />
+        <activity android:name=".activity.detail.DetailActivity" />
+        <activity
+            android:name=".activity.setting.SettingsActivity"
+            android:label="settings" />
     </application>
 
 </manifest>

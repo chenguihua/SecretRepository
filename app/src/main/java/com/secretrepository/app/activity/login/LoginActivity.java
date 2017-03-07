@@ -1,4 +1,4 @@
-package com.secretrepository.app.main.login;
+package com.secretrepository.app.activity.login;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,8 +14,8 @@ import android.widget.Button;
 
 import com.secretrepository.app.R;
 import com.secretrepository.app.util.crypt.MD5Crypt;
-import com.secretrepository.app.MainActivity;
-import com.secretrepository.app.BaseActivity;
+import com.secretrepository.app.main.MainActivity;
+import com.secretrepository.app.main.base.BaseActivity;
 import com.secretrepository.app.util.InputMethodUtils;
 
 
@@ -47,7 +47,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         loginButton = (Button) findViewById(R.id.btn_login);
         loginButton.setOnClickListener(this);
-        pass();
+//        pass();
     }
 
 

@@ -16,12 +16,12 @@ public class LoginMsgDBHelper extends SQLiteOpenHelper {
 
     private static final String SQL_CREATE_ENTRY =
             "CREATE TABLE " + MsgPersistenceContract.MsgEntry.TABLE_NAME + " (" +
-                    MsgPersistenceContract.MsgEntry._ID + TEXT_TYPE + "PRIMARY KEY," +
+                    MsgPersistenceContract.MsgEntry._ID + TEXT_TYPE + " PRIMARY KEY," +
                     MsgPersistenceContract.MsgEntry.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + COMMA_SEP +
                     MsgPersistenceContract.MsgEntry.COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP +
                     MsgPersistenceContract.MsgEntry.COLUMN_NAME_USERNAME + TEXT_TYPE + COMMA_SEP +
                     MsgPersistenceContract.MsgEntry.COLUMN_NAME_PASSWORD + TEXT_TYPE + COMMA_SEP +
-                    MsgPersistenceContract.MsgEntry.COLUMN_NAME_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
+                    MsgPersistenceContract.MsgEntry.COLUMN_NAME_DESCRIPTION + TEXT_TYPE  +
                     " )";
 
     public LoginMsgDBHelper(Context context) {
