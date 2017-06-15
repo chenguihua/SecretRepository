@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/activity_horizontal_margin"
-    tools:context=".activity.login.LoginActivity">
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:weightSum="10"
+    tools:context=".main.activity.LoginActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.4"
+        android:layout_weight="2"
         android:orientation="vertical">
 
         <TextView
@@ -20,13 +21,14 @@
             android:gravity="center"
             android:text="Welcome"
             android:textColor="#333333"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:textStyle="bold"/>
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.6"
+        android:layout_height="0dp"
+        android:layout_weight="8"
         android:focusableInTouchMode="true"
         android:orientation="vertical">
 
@@ -58,14 +60,29 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_login"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="@color/colorAccent"
-            android:textAllCaps="false"
-            android:text="Login" />
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_sign_in"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/colorAccent"
+                android:textAllCaps="false"
+                android:text="sign in" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/colorAccent"
+                android:textAllCaps="false"
+                android:text="sign up"
+                android:visibility="gone"/>
+        </FrameLayout>
+
     </LinearLayout>
 
 </LinearLayout>

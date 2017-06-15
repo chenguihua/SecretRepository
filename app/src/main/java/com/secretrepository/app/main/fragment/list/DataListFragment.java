@@ -16,8 +16,8 @@ import com.secretrepository.app.data.LoginMsg;
 import com.secretrepository.app.data.source.LoginMsgDataSource;
 import com.secretrepository.app.data.source.LoginMsgRepository;
 import com.secretrepository.app.data.source.local.LoginMsgLocalDataSource;
-import com.secretrepository.app.activity.detail.DetailActivity;
-import com.secretrepository.app.activity.input.EditActivity;
+import com.secretrepository.app.main.activity.DetailActivity;
+import com.secretrepository.app.main.activity.EditActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,6 +78,10 @@ public class DataListFragment extends Fragment {
         dataListAdapter.setOnItemClickListener(new DataListAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, LoginMsg msg) {
+                if (getSelectMessage() != null) {
+                    cancelSelectDeleteItem();
+                    return;
+                }
                 showDetail(msg);
             }
         });

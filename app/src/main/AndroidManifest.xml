@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.login.LoginActivity"
+            android:name=".main.activity.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
             <intent-filter>
@@ -32,10 +32,10 @@
         <activity
             android:name=".main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.input.EditActivity" />
-        <activity android:name=".activity.detail.DetailActivity" />
+        <activity android:name=".main.activity.EditActivity" />
+        <activity android:name=".main.activity.DetailActivity" />
         <activity
-            android:name=".activity.setting.SettingsActivity"
+            android:name=".main.activity.setting.SettingsActivity"
             android:label="settings" />
     </application>
 

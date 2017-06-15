@@ -9,8 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.secretrepository.app.R;
-import com.secretrepository.app.activity.setting.SettingsActivity;
-import com.secretrepository.app.main.base.BaseActivity;
+import com.secretrepository.app.main.activity.setting.SettingsActivity;
 import com.secretrepository.app.main.fragment.list.DataListFragment;
 
 public class MainActivity extends BaseActivity {

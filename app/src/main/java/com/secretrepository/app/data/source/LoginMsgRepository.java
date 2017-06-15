@@ -1,7 +1,6 @@
 package com.secretrepository.app.data.source;
 
 import com.secretrepository.app.data.LoginMsg;
-import com.secretrepository.app.data.source.local.LoginMsgLocalDataSource;
 
 /**
  * Created by chenguihua on 2017/3/3.
@@ -17,7 +16,11 @@ public class LoginMsgRepository implements LoginMsgDataSource {
 
     public static LoginMsgRepository getInstance(LoginMsgDataSource localDataSource) {
         if (mInstance == null) {
-            mInstance = new LoginMsgRepository(localDataSource);
+            synchronized (LoginMsgRepository.class) {
+                if (mInstance == null) {
+                    mInstance = new LoginMsgRepository(localDataSource);
+                }
+            }
         }
         return mInstance;
     }
