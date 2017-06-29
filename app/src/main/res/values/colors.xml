@@ -4,6 +4,21 @@
     <color name="colorPrimaryDark">#303f9f</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorBackground">#FEFEFE</color>
-
+    <color name="light_gray">#dbdbdb</color>
+    <color name="gray">#7e7e7e</color>
     <color name="text_hint">#aaaaaa</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="black_effective">#2a2a2a</color>
+
+
+    <!-- -->
+    <color name="red_dark">#f06423</color>
+    <color name="red_dark2">#d85a1b</color>
+    <color name="cyan">#b5e3e7</color>
+    <color name="cyan_light">#c9ebee</color>
+    <color name="cyan_dark">#70bdc6</color>
+    <color name="navy_blue">#214258</color>
+    <color name="navy_blue_dark">#1c3a4e</color>
 </resources>
