@@ -1,0 +1,5 @@
+# ninja log v5
+0	27	0	CMakeFiles/crypt-lib.dir/src/main/cpp/crypt-lib.cpp.o	8ea80fdb5da60efd
+27	600	0	../../../../build/intermediates/cmake/debug/obj/x86_64/libcrypt-lib.so	fe31afdfe7ebdb54
+1	24	0	CMakeFiles/crypt-lib.dir/src/main/cpp/crypt-lib.cpp.o	8ea80fdb5da60efd
+24	496	0	../../../../build/intermediates/cmake/debug/obj/x86_64/libcrypt-lib.so	fe31afdfe7ebdb54

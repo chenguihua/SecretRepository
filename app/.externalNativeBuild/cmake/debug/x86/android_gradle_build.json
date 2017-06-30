@@ -1,0 +1,38 @@
+
+{
+	"buildFiles" : [ "E:/Code/workspace_android/SecretRepository/app/CMakeLists.txt" ],
+	"cleanCommands" : 
+	[
+		"D:\\AndroidSDK\\android-sdk-windows\\cmake\\3.6.3155560\\bin\\cmake.exe --build E:\\Code\\workspace_android\\SecretRepository\\app\\.externalNativeBuild\\cmake\\debug\\x86 --target clean"
+	],
+	"cppFileExtensions" : [ "cpp" ],
+	"libraries" : 
+	{
+		"crypt-lib-Debug-x86" : 
+		{
+			"abi" : "x86",
+			"artifactName" : "crypt-lib",
+			"buildCommand" : "D:\\AndroidSDK\\android-sdk-windows\\cmake\\3.6.3155560\\bin\\cmake.exe --build E:\\Code\\workspace_android\\SecretRepository\\app\\.externalNativeBuild\\cmake\\debug\\x86 --target crypt-lib",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=i686-none-linux-android --gcc-toolchain=D:/AndroidSDK/android-sdk-windows/ndk-bundle/toolchains/x86-4.9/prebuilt/windows-x86_64 --sysroot=D:/AndroidSDK/android-sdk-windows/ndk-bundle/platforms/android-9/arch-x86  -Dcrypt_lib_EXPORTS -I..\\..\\..\\..\\src\\main\\cpp\\include -isystem D:\\AndroidSDK\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem D:\\AndroidSDK\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86\\include -isystem D:\\AndroidSDK\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "E:/Code/workspace_android/SecretRepository/app/src/main/cpp/crypt-lib.cpp",
+					"workingDirectory" : "E:/Code/workspace_android/SecretRepository/app/.externalNativeBuild/cmake/debug/x86"
+				}
+			],
+			"output" : "E:/Code/workspace_android/SecretRepository/app/build/intermediates/cmake/debug/obj/x86/libcrypt-lib.so",
+			"toolchain" : "1509364835"
+		}
+	},
+	"toolchains" : 
+	{
+		"1509364835" : 
+		{
+			"cCompilerExecutable" : "D:/AndroidSDK/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
+			"cppCompilerExecutable" : "D:/AndroidSDK/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+		}
+	}
+}

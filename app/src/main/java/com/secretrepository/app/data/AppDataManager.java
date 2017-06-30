@@ -28,22 +28,22 @@ public class AppDataManager implements DataManager{
 
     @Override
     public String getLocalUsername() {
-        return null;
+        return mPreferencesHelper.getLocalUsername();
     }
 
     @Override
     public void setLocalUsername(String name) {
-
+        mPreferencesHelper.setLocalUsername(name);
     }
 
     @Override
     public String getLocalPassword() {
-        return null;
+        return mPreferencesHelper.getLocalPassword();
     }
 
     @Override
     public void setLocalPassword(String name) {
-
+        mPreferencesHelper.setLocalPassword(name);
     }
 
     @Override

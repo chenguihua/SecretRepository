@@ -1,0 +1,5 @@
+# ninja log v5
+0	74	0	CMakeFiles/crypt-lib.dir/src/main/cpp/crypt-lib.cpp.o	869fa2e47d33e8fb
+74	566	0	../../../../build/intermediates/cmake/debug/obj/mips64/libcrypt-lib.so	dc71721323253eda
+0	41	0	CMakeFiles/crypt-lib.dir/src/main/cpp/crypt-lib.cpp.o	869fa2e47d33e8fb
+41	274	0	../../../../build/intermediates/cmake/debug/obj/mips64/libcrypt-lib.so	dc71721323253eda

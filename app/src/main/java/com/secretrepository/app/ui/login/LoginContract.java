@@ -11,6 +11,10 @@ public interface LoginContract {
 
     interface View extends MvpView {
 
+        void showFirstLoginTips();
+
+        void showErrorLoginInfo(CharSequence str);
+
         void openMainActivity();
     }
 

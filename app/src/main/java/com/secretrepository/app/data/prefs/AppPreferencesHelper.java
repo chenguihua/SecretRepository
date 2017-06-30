@@ -36,11 +36,11 @@ public class AppPreferencesHelper implements PreferencesHelper {
 
     @Override
     public String getLocalPassword() {
-        return null;
+        return mPrefs.getString(PREF_KEY_USER_PASS, null);
     }
 
     @Override
     public void setLocalPassword(String name) {
-
+        mPrefs.edit().putString(PREF_KEY_USER_PASS, name).apply();
     }
 }

@@ -1,10 +1,16 @@
 package com.secretrepository.app.ui.login;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.TextView;
 
 import com.secretrepository.app.R;
 import com.secretrepository.app.data.AppDataManager;
@@ -19,6 +25,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnTextChanged;
 
 
 /**
@@ -34,6 +41,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     @BindView(R.id.et_password)
     TextInputEditText mEtPassword;
+
+    @BindView(R.id.til_password)
+    TextInputLayout mTilPassword;
 
     public static Intent getEntryIntent(Context context) {
         Intent intent = new Intent(context, LoginActivity.class);
@@ -63,9 +73,39 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     }
 
     @Override
+    public void showFirstLoginTips() {
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle("Tips")
+                .setMessage("The code will be the first you use to enter the app.")
+                .setPositiveButton("get it", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                .create();
+        dialog.show();
+    }
+
+
+    @Override
+    public void showErrorLoginInfo(CharSequence error) {
+        mTilPassword.setError(error);
+    }
+
+    @Override
     public void openMainActivity() {
         Intent intent = MainActivity.getEntryActivity(this);
         startActivity(intent);
         finish();
     }
+
+    @OnTextChanged(value = {R.id.et_username, R.id.et_password})
+    void onEditTextChanged() {
+        if (!TextUtils.isEmpty(mTilPassword.getError())){
+            mTilPassword.setErrorEnabled(false);
+        }
+
+    }
+
 }

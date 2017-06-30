@@ -1,0 +1,5 @@
+# ninja log v5
+0	40	0	CMakeFiles/crypt-lib.dir/src/main/cpp/crypt-lib.cpp.o	fbde438032482e04
+40	422	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libcrypt-lib.so	f93a8e4eea65c0e9
+0	39	0	CMakeFiles/crypt-lib.dir/src/main/cpp/crypt-lib.cpp.o	fbde438032482e04
+39	342	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libcrypt-lib.so	f93a8e4eea65c0e9
