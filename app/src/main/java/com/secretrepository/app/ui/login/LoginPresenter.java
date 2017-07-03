@@ -49,12 +49,12 @@ public class LoginPresenter<V extends LoginContract.View> extends BasePresenter<
             }
             String serial = register(username, password);
             if (!TextUtils.isEmpty(serial)) {
-                getView().openMainActivity(serial);
+                //getView().openMainActivity(serial);
             }
         } else {
             String serial = login(username, password);
             if (!TextUtils.isEmpty(serial)) {
-                getView().openMainActivity(serial);
+                //getView().openMainActivity(serial);
             }
 
         }
