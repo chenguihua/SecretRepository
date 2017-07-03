@@ -8,6 +8,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import com.secretrepository.app.di.Component.DaggerActivityComponent;
 import com.secretrepository.app.di.module.ActivityModule;
 import com.secretrepository.app.ui.base.BaseActivity;
 import com.secretrepository.app.ui.main.MainActivity;
+import com.secretrepository.app.util.CryptUtil;
 
 import javax.inject.Inject;
 
@@ -32,6 +34,7 @@ import butterknife.OnTextChanged;
  * Created by chenguihua on 2016/6/6.
  */
 public class LoginActivity extends BaseActivity implements LoginContract.View {
+    private static final String TAG = "LoginActivity";
 
     @Inject
     LoginContract.Presenter<LoginContract.View> mPresenter;
@@ -94,7 +97,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     }
 
     @Override
-    public void openMainActivity() {
+    public void openMainActivity(String serial) {
         Intent intent = MainActivity.getEntryActivity(this);
         startActivity(intent);
         finish();

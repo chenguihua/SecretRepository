@@ -1,5 +1,18 @@
 # ninja log v5
-0	74	0	CMakeFiles/crypt-lib.dir/src/main/cpp/crypt-lib.cpp.o	869fa2e47d33e8fb
-74	566	0	../../../../build/intermediates/cmake/debug/obj/mips64/libcrypt-lib.so	dc71721323253eda
-0	41	0	CMakeFiles/crypt-lib.dir/src/main/cpp/crypt-lib.cpp.o	869fa2e47d33e8fb
-41	274	0	../../../../build/intermediates/cmake/debug/obj/mips64/libcrypt-lib.so	dc71721323253eda
+0	75	0	CMakeFiles/secret-lib.dir/src/main/jni/secret-lib.cpp.o	54dbc79a8372ede6
+1	177	0	CMakeFiles/secret-lib.dir/src/main/jni/MD5.cpp.o	724b730abf40b6aa
+177	460	0	../../../../build/intermediates/cmake/debug/obj/mips64/libsecret-lib.so	600b2b6300f594b9
+1	3619	0	CMakeFiles/secret-lib.dir/src/main/jni/secret-lib.cpp.o	54dbc79a8372ede6
+39	3685	0	CMakeFiles/secret-lib.dir/src/main/jni/MD5.cpp.o	724b730abf40b6aa
+3685	4626	0	../../../../build/intermediates/cmake/debug/obj/mips64/libsecret-lib.so	600b2b6300f594b9
+2	437	0	CMakeFiles/secret-lib.dir/src/main/jni/secret-lib.cpp.o	54dbc79a8372ede6
+4	446	0	CMakeFiles/secret-lib.dir/src/main/jni/MD5.cpp.o	724b730abf40b6aa
+446	715	0	../../../../build/intermediates/cmake/debug/obj/mips64/libsecret-lib.so	600b2b6300f594b9
+46	2162	0	CMakeFiles/secret-lib.dir/src/main/jni/secret-lib.cpp.o	54dbc79a8372ede6
+96	4932	0	CMakeFiles/secret-lib.dir/src/main/jni/MD5.cpp.o	724b730abf40b6aa
+4932	5898	0	../../../../build/intermediates/cmake/debug/obj/mips64/libsecret-lib.so	600b2b6300f594b9
+1	187	0	CMakeFiles/secret-lib.dir/src/main/jni/secret-lib.cpp.o	54dbc79a8372ede6
+2	265	0	CMakeFiles/secret-lib.dir/src/main/jni/MD5.cpp.o	724b730abf40b6aa
+265	545	0	../../../../build/intermediates/cmake/debug/obj/mips64/libsecret-lib.so	600b2b6300f594b9
+6	530	0	CMakeFiles/secret-lib.dir/src/main/jni/secret-lib.cpp.o	54dbc79a8372ede6
+530	909	0	../../../../build/intermediates/cmake/debug/obj/mips64/libsecret-lib.so	600b2b6300f594b9

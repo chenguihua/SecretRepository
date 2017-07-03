@@ -15,7 +15,7 @@ public interface LoginContract {
 
         void showErrorLoginInfo(CharSequence str);
 
-        void openMainActivity();
+        void openMainActivity(String serial);
     }
 
     interface Presenter<V extends View> extends MvpPresenter<V> {

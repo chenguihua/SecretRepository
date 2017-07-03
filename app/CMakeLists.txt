@@ -11,13 +11,16 @@ cmake_minimum_required(VERSION 3.4.1)
 # automatically packages shared libraries with your APK.
 
 add_library(# Specifies the name of the library
-            crypt-lib
+            secret-lib
 
             # Sets the library as a shared library.
             SHARED
 
             #Provides a relative path to your source file(s).
-            src/main/cpp/crypt-lib.cpp)
+            src/main/jni/secret-lib.cpp src/main/jni/MD5.cpp)
 
 # Specifies a path to native header files.
-include_directories(src/main/cpp/include/)
+include_directories(src/main/jni/include/)
+
+find_library(log-lib log)
+target_link_libraries(secret-lib ${log-lib})

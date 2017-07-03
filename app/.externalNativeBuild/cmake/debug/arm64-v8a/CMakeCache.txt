@@ -192,8 +192,11 @@ Project_BINARY_DIR:STATIC=E:/Code/workspace_android/SecretRepository/app/.extern
 //Value Computed by CMake
 Project_SOURCE_DIR:STATIC=E:/Code/workspace_android/SecretRepository/app
 
-//Dependencies for target
-crypt-lib_LIB_DEPENDS:STATIC=
+//Path to a library.
+log-lib:FILEPATH=D:/AndroidSDK/android-sdk-windows/ndk-bundle/platforms/android-21/arch-arm64/usr/lib/liblog.so
+
+//Dependencies for the target
+secret-lib_LIB_DEPENDS:STATIC=general;D:/AndroidSDK/android-sdk-windows/ndk-bundle/platforms/android-21/arch-arm64/usr/lib/liblog.so;
 
 
 ########################

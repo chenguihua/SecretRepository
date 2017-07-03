@@ -36,30 +36,29 @@ public class LoginPresenter<V extends LoginContract.View> extends BasePresenter<
             return;
         }
 
-        if (TextUtils.isEmpty(mUsername)) {
+        boolean isFirstTimeLogin = TextUtils.isEmpty(mUsername);
+        // first time to login, check the name and the password whether is legal.
+        if (isFirstTimeLogin) {
             LegalCheck checker = new LegalCheck();
-            String u = getDataManager().getLocalUsername();
-            int errorId;
-            if ((errorId = checker.check(u)) != LegalCheck.NO_ERROR) {
+            int errorId = LegalCheck.NO_ERROR;
+            if ((errorId = checker.check(username)) != LegalCheck.NO_ERROR
+                    && (errorId = checker.check(password)) != LegalCheck.NO_ERROR)
+            {
                 getView().showErrorLoginInfo(getErrorString(errorId));
                 return;
             }
-            String p = getDataManager().getLocalPassword();
-            if ((errorId = checker.check(p)) != LegalCheck.NO_ERROR) {
-                getView().showErrorLoginInfo(getErrorString(errorId));
-                return;
+            String serial = register(username, password);
+            if (!TextUtils.isEmpty(serial)) {
+                getView().openMainActivity(serial);
             }
-            getDataManager().setLocalUsername(username);
-            getDataManager().setLocalPassword(password);
-            getView().openMainActivity();
         } else {
-            if (getDataManager().getLocalUsername().equals(username)
-                    && getDataManager().getLocalPassword().equals(password)) {
-                getView().openMainActivity();
-            } else {
-                getView().showErrorLoginInfo("incorrect username or password!");
+            String serial = login(username, password);
+            if (!TextUtils.isEmpty(serial)) {
+                getView().openMainActivity(serial);
             }
+
         }
+
     }
 
     String getErrorString(@LegalCheck.CheckError int errId) {
@@ -83,4 +82,10 @@ public class LoginPresenter<V extends LoginContract.View> extends BasePresenter<
         return false;
     }
 
+    private native String register(String username, String password);
+    private native String login(String username, String password);
+
+    static {
+        System.loadLibrary("secret-lib");
+    }
 }

@@ -8,22 +8,28 @@
 	"cppFileExtensions" : [ "cpp" ],
 	"libraries" : 
 	{
-		"crypt-lib-Release-x86" : 
+		"secret-lib-Release-x86" : 
 		{
 			"abi" : "x86",
-			"artifactName" : "crypt-lib",
-			"buildCommand" : "D:\\AndroidSDK\\android-sdk-windows\\cmake\\3.6.3155560\\bin\\cmake.exe --build E:\\Code\\workspace_android\\SecretRepository\\app\\.externalNativeBuild\\cmake\\release\\x86 --target crypt-lib",
+			"artifactName" : "secret-lib",
+			"buildCommand" : "D:\\AndroidSDK\\android-sdk-windows\\cmake\\3.6.3155560\\bin\\cmake.exe --build E:\\Code\\workspace_android\\SecretRepository\\app\\.externalNativeBuild\\cmake\\release\\x86 --target secret-lib",
 			"buildType" : "release",
 			"files" : 
 			[
 				
 				{
-					"flags" : "  --target=i686-none-linux-android --gcc-toolchain=D:/AndroidSDK/android-sdk-windows/ndk-bundle/toolchains/x86-4.9/prebuilt/windows-x86_64 --sysroot=D:/AndroidSDK/android-sdk-windows/ndk-bundle/platforms/android-9/arch-x86  -Dcrypt_lib_EXPORTS -I..\\..\\..\\..\\src\\main\\cpp\\include -isystem D:\\AndroidSDK\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem D:\\AndroidSDK\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86\\include -isystem D:\\AndroidSDK\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -Wa,--noexecstack -Wformat -Werror=format-security   -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
-					"src" : "E:/Code/workspace_android/SecretRepository/app/src/main/cpp/crypt-lib.cpp",
+					"flags" : "  --target=i686-none-linux-android --gcc-toolchain=D:/AndroidSDK/android-sdk-windows/ndk-bundle/toolchains/x86-4.9/prebuilt/windows-x86_64 --sysroot=D:/AndroidSDK/android-sdk-windows/ndk-bundle/platforms/android-9/arch-x86  -Dsecret_lib_EXPORTS -I..\\..\\..\\..\\src\\main\\jni\\include -isystem D:\\AndroidSDK\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem D:\\AndroidSDK\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86\\include -isystem D:\\AndroidSDK\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -Wa,--noexecstack -Wformat -Werror=format-security   -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "E:/Code/workspace_android/SecretRepository/app/src/main/jni/secret-lib.cpp",
+					"workingDirectory" : "E:/Code/workspace_android/SecretRepository/app/.externalNativeBuild/cmake/release/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android --gcc-toolchain=D:/AndroidSDK/android-sdk-windows/ndk-bundle/toolchains/x86-4.9/prebuilt/windows-x86_64 --sysroot=D:/AndroidSDK/android-sdk-windows/ndk-bundle/platforms/android-9/arch-x86  -Dsecret_lib_EXPORTS -I..\\..\\..\\..\\src\\main\\jni\\include -isystem D:\\AndroidSDK\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem D:\\AndroidSDK\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86\\include -isystem D:\\AndroidSDK\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -Wa,--noexecstack -Wformat -Werror=format-security   -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "E:/Code/workspace_android/SecretRepository/app/src/main/jni/MD5.cpp",
 					"workingDirectory" : "E:/Code/workspace_android/SecretRepository/app/.externalNativeBuild/cmake/release/x86"
 				}
 			],
-			"output" : "E:/Code/workspace_android/SecretRepository/app/build/intermediates/cmake/release/obj/x86/libcrypt-lib.so",
+			"output" : "E:/Code/workspace_android/SecretRepository/app/build/intermediates/cmake/release/obj/x86/libsecret-lib.so",
 			"toolchain" : "1509364835"
 		}
 	},

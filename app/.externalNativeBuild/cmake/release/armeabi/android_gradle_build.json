@@ -8,22 +8,28 @@
 	"cppFileExtensions" : [ "cpp" ],
 	"libraries" : 
 	{
-		"crypt-lib-Release-armeabi" : 
+		"secret-lib-Release-armeabi" : 
 		{
 			"abi" : "armeabi",
-			"artifactName" : "crypt-lib",
-			"buildCommand" : "D:\\AndroidSDK\\android-sdk-windows\\cmake\\3.6.3155560\\bin\\cmake.exe --build E:\\Code\\workspace_android\\SecretRepository\\app\\.externalNativeBuild\\cmake\\release\\armeabi --target crypt-lib",
+			"artifactName" : "secret-lib",
+			"buildCommand" : "D:\\AndroidSDK\\android-sdk-windows\\cmake\\3.6.3155560\\bin\\cmake.exe --build E:\\Code\\workspace_android\\SecretRepository\\app\\.externalNativeBuild\\cmake\\release\\armeabi --target secret-lib",
 			"buildType" : "release",
 			"files" : 
 			[
 				
 				{
-					"flags" : "  --target=armv5te-none-linux-androideabi --gcc-toolchain=D:/AndroidSDK/android-sdk-windows/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=D:/AndroidSDK/android-sdk-windows/ndk-bundle/platforms/android-9/arch-arm  -Dcrypt_lib_EXPORTS -I..\\..\\..\\..\\src\\main\\cpp\\include -isystem D:\\AndroidSDK\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem D:\\AndroidSDK\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi\\include -isystem D:\\AndroidSDK\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv5te -mtune=xscale -msoft-float -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv5te -mtune=xscale -msoft-float -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security   -Os -DNDEBUG -Os -DNDEBUG  -fPIC    -c ",
-					"src" : "E:/Code/workspace_android/SecretRepository/app/src/main/cpp/crypt-lib.cpp",
+					"flags" : "  --target=armv5te-none-linux-androideabi --gcc-toolchain=D:/AndroidSDK/android-sdk-windows/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=D:/AndroidSDK/android-sdk-windows/ndk-bundle/platforms/android-9/arch-arm  -Dsecret_lib_EXPORTS -I..\\..\\..\\..\\src\\main\\jni\\include -isystem D:\\AndroidSDK\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem D:\\AndroidSDK\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi\\include -isystem D:\\AndroidSDK\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv5te -mtune=xscale -msoft-float -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv5te -mtune=xscale -msoft-float -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security   -Os -DNDEBUG -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "E:/Code/workspace_android/SecretRepository/app/src/main/jni/secret-lib.cpp",
+					"workingDirectory" : "E:/Code/workspace_android/SecretRepository/app/.externalNativeBuild/cmake/release/armeabi"
+				},
+				
+				{
+					"flags" : "  --target=armv5te-none-linux-androideabi --gcc-toolchain=D:/AndroidSDK/android-sdk-windows/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=D:/AndroidSDK/android-sdk-windows/ndk-bundle/platforms/android-9/arch-arm  -Dsecret_lib_EXPORTS -I..\\..\\..\\..\\src\\main\\jni\\include -isystem D:\\AndroidSDK\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem D:\\AndroidSDK\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi\\include -isystem D:\\AndroidSDK\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv5te -mtune=xscale -msoft-float -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv5te -mtune=xscale -msoft-float -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security   -Os -DNDEBUG -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "E:/Code/workspace_android/SecretRepository/app/src/main/jni/MD5.cpp",
 					"workingDirectory" : "E:/Code/workspace_android/SecretRepository/app/.externalNativeBuild/cmake/release/armeabi"
 				}
 			],
-			"output" : "E:/Code/workspace_android/SecretRepository/app/build/intermediates/cmake/release/obj/armeabi/libcrypt-lib.so",
+			"output" : "E:/Code/workspace_android/SecretRepository/app/build/intermediates/cmake/release/obj/armeabi/libsecret-lib.so",
 			"toolchain" : "1509364835"
 		}
 	},
