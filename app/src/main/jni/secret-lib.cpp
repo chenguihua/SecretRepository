@@ -15,7 +15,7 @@ JNIEXPORT jstring Java_com_secretrepository_app_ui_login_LoginPresenter_register
         return env->NewStringUTF("");
     }
     __android_log_print(ANDROID_LOG_DEBUG, "NDK_LOG", "LoginPresenter class find successfully.");
-    jfieldID fieldDataManager = env->GetFieldID(clazz, "DataManager", "[L/java/lang/object;");
+    jfieldID fieldDataManager = env->GetFieldID(clazz, "DataManager", "[Lcom/secretrepository/app/data/DataManager;");
     if (fieldDataManager == 0) {
         return env->NewStringUTF("");
     }
