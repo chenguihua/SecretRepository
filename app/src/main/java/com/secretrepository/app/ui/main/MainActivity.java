@@ -107,15 +107,11 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     }
 
     @Override
-    public void updateLoadedData(List<User> users) {
+    public void updateDisplayData(List<User> users) {
         mAdapter.setData(users);
         mAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        return super.onTouchEvent(event);
-    }
 
     @Override
     protected void onDestroy() {

@@ -33,7 +33,7 @@ public class MainPresenter<V extends MainContract.View> extends BasePresenter<V>
         .subscribe(new Consumer<List<User>>() {
             @Override
             public void accept(@NonNull List<User> users) throws Exception {
-                getView().updateLoadedData(users);
+                getView().updateDisplayData(users);
             }
         });
     }

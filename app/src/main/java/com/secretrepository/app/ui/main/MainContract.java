@@ -20,16 +20,24 @@ public interface MainContract {
 
         void openUserActivity(User user);
 
-        void updateLoadedData(List<User> users);
+        void updateDisplayData(List<User> users);
 
     }
 
     interface Presenter<V extends View> extends MvpPresenter<V> {
 
+        /**
+         * get user list through data manager interface.
+         */
         void load();
+
 
         void onFabClick(android.view.View view);
 
+        /**
+         * show user information in activity or other
+         * @param user user information {username:password}
+         */
         void showUserInformation(User user);
     }
 
