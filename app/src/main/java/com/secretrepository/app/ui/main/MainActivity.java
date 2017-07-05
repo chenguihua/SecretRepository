@@ -2,25 +2,48 @@ package com.secretrepository.app.ui.main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 
 import com.secretrepository.app.R;
+import com.secretrepository.app.data.db.model.User;
 import com.secretrepository.app.ui.base.BaseActivity;
-import com.secretrepository.app.ui.fragment.list.DataListFragment;
+import com.secretrepository.app.ui.Edit.EditActivity;
+import com.secretrepository.app.ui.display.UserActivity;
 import com.secretrepository.app.ui.setting.SettingsActivity;
+import com.secretrepository.app.util.AppConstants;
 
-public class MainActivity extends BaseActivity {
+import java.util.List;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+public class MainActivity extends BaseActivity implements MainContract.View {
     public final static String TAG = "MainActivity";
-    public static final boolean DEBUG = true;
-    public static String PREFERENCE_NAME = "Login";
 
-    public static Intent getEntryActivity(Context context) {
+    @Inject
+    MainPresenter<MainContract.View> mPresenter;
+
+    UserAdapter mAdapter;
+
+    @BindView(R.id.toolbar)
+    Toolbar mToolBar;
+
+    @BindView(R.id.recycler_view)
+    RecyclerView mRecyclerView;
+
+    public static Intent getEntryActivity(Context context, String serial) {
         Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra(AppConstants.APP_LOGIN_SERIAL, serial);
         return intent;
     }
 
@@ -29,19 +52,24 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // set up the toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu1);
+        getActivityComponent().inject(this);
+        ButterKnife.bind(this);
+        mPresenter.onAttach(this);
 
-        FragmentManager fragManager = getSupportFragmentManager();
-        DataListFragment fragment = (DataListFragment) fragManager.findFragmentById(R.id.contentFrame);
-        if (fragment == null) {
-            fragment = new DataListFragment();
-            fragManager.beginTransaction().add(R.id.contentFrame, fragment).commit();
-        }
+        // set up the toolbar
+        setSupportActionBar(mToolBar);
+        initRecycleViewWithAdapter();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.load();
+    }
+
+    @OnClick(R.id.fab)
+    void onFabButtonClick(View view) {
+        mPresenter.onFabClick(view);
     }
 
     @Override
@@ -54,21 +82,67 @@ public class MainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Intent intent = new Intent(this, SettingsActivity.class);
-                startActivity(intent);
+                openSettingsActivity();
                 break;
         }
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
     @Override
-    public void onBackPressed() {
-//        DataListFragment fragment = (DataListFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
-//        if (fragment != null && fragment.getSelectMessage() != null)
-//        {
-//            fragment.cancelSelectDeleteItem();
-//            return;
-//        }
-//        super.onBackPressed();
+    public void openSettingsActivity() {
+        Intent intent = SettingsActivity.getEntryIntent(this);
+        startActivity(intent);
+    }
+
+    @Override
+    public void openEditActivity() {
+        Intent intent = EditActivity.getEntryIntent(this);
+        startActivity(intent);
+    }
+
+    @Override
+    public void openUserActivity(User user) {
+        Intent intent = UserActivity.getEntryIntent(this, user, "");
+        startActivity(intent);
+    }
+
+    @Override
+    public void updateLoadedData(List<User> users) {
+        mAdapter.setData(users);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return super.onTouchEvent(event);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDetach();
+    }
+
+    /**
+     * Recycler View initialization.
+     */
+    void initRecycleViewWithAdapter() {
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        mAdapter = new UserAdapter(this,
+                new UserAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View v, int pos, User user) {
+                        mPresenter.showUserInformation(user);
+                    }
+                },
+                new UserAdapter.OnItemLongClickListener() {
+                    @Override
+                    public void onItemLongClick(View v, int pos, User user) {
+                    }
+                });
+        mRecyclerView.setAdapter(mAdapter);
     }
 }
