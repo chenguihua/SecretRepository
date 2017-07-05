@@ -27,7 +27,7 @@ public class AppDbHelper implements DbHelper{
     }
 
     @Override
-    public Observable<List<User>> getAllUser() {
+    public Observable<List<User>> loadUsers() {
         return Observable.fromCallable(new Callable<List<User>>() {
             @Override
             public List<User> call() throws Exception {
@@ -35,4 +35,15 @@ public class AppDbHelper implements DbHelper{
             }
         });
     }
+
+    @Override
+    public Observable<Long> saveUser(final User user) {
+        return Observable.fromCallable(new Callable<Long>() {
+            @Override
+            public Long call() throws Exception {
+                return mDaoSession.getUserDao().insert(user);
+            }
+        });
+    }
+
 }

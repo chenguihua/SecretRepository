@@ -15,8 +15,8 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
     private final DataManager mDataManager;
 
     @Inject
-    public BasePresenter(DataManager mDataManager) {
-        this.mDataManager = mDataManager;
+    public BasePresenter(DataManager dataManager) {
+        this.mDataManager = dataManager;
     }
 
     @Override

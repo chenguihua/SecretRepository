@@ -12,6 +12,8 @@ import io.reactivex.Observable;
 
 public interface DbHelper {
 
-    Observable<List<User>> getAllUser();
+    Observable<List<User>> loadUsers();
+
+    Observable<Long> saveUser(User user);
 
 }

@@ -8,19 +8,11 @@ import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.widget.TextView;
 
 import com.secretrepository.app.R;
-import com.secretrepository.app.data.AppDataManager;
-import com.secretrepository.app.data.DataManager;
-import com.secretrepository.app.di.Component.DaggerActivityComponent;
-import com.secretrepository.app.di.module.ActivityModule;
 import com.secretrepository.app.ui.base.BaseActivity;
 import com.secretrepository.app.ui.main.MainActivity;
-import com.secretrepository.app.util.CryptUtil;
 
 import javax.inject.Inject;
 
@@ -98,7 +90,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     @Override
     public void openMainActivity(String serial) {
-        Intent intent = MainActivity.getEntryActivity(this);
+        Intent intent = MainActivity.getEntryActivity(this, serial);
         startActivity(intent);
         finish();
     }

@@ -9,6 +9,7 @@
         <item name="colorButtonNormal">@color/colorAccent</item>
     </style>
 
+
     <style name="AppTheme.FullScreen">
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/white</item>

@@ -32,8 +32,8 @@
 
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.main.MainActivity" />
-        <activity android:name=".ui.input.EditActivity" />
-        <activity android:name=".ui.detail.DetailActivity" />
+        <activity android:name=".ui.Edit.EditActivity" />
+        <activity android:name=".ui.display.UserActivity" />
         <activity android:name=".ui.setting.SettingsActivity" />
     </application>
 

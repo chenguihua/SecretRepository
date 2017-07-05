@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  * Created by chenguihua on 2017/6/30.
  */
 
-public class LegalCheck {
+public class LegalFormatCheck {
     private static final int MAX_LENGTH = 50;
 
     public static final int NO_ERROR = 0;
@@ -60,11 +60,11 @@ public class LegalCheck {
             return EMPTY_ERROR;
         }
 
-        if (checkLengthLimit(str, 6)) {
+        if (!checkLengthLimit(str, 6)) {
             return LENGTH_LIMIT_ERROR;
         }
 
-        if (checkLegalCharacter(str)) {
+        if (!checkLegalCharacter(str)) {
             return ILLEGAL_CHAR_ERROR;
         }
 

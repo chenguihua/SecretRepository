@@ -19,6 +19,7 @@ public class SplashPresenter<V extends SplashContract.View> extends BasePresente
     @Override
     public void onAttach(V view) {
         super.onAttach(view);
-        getView().openLoginActivity();
+        //getView().openLoginActivity();
+        getView().openMainActivity();
     }
 }

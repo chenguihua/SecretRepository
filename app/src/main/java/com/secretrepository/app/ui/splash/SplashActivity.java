@@ -3,6 +3,7 @@ package com.secretrepository.app.ui.splash;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
 
 import com.secretrepository.app.R;
 import com.secretrepository.app.ui.base.BaseActivity;
@@ -44,9 +45,9 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
         finish();
     }
 
-    @Override
+    @VisibleForTesting
     public void openMainActivity() {
-        Intent intent = MainActivity.getEntryActivity(this);
+        Intent intent = MainActivity.getEntryActivity(this, null);
         startActivity(intent);
         finish();
     }
