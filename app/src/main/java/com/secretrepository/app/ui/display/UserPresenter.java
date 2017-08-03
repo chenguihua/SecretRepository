@@ -15,4 +15,9 @@ public class UserPresenter<V extends UserContract.View> extends BasePresenter<V>
     public UserPresenter(DataManager dataManager) {
         super(dataManager);
     }
+
+    @Override
+    public void show(String title, String username, String password, String code) {
+        getView().showInfoOnUI(title, username, password);
+    }
 }

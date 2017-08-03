@@ -9,10 +9,10 @@ import com.secretrepository.app.ui.base.MvpView;
 
 public interface UserContract {
     interface View extends MvpView {
-
+        void showInfoOnUI(String title, String username, String password);
     }
 
     interface Presenter<V extends View> extends MvpPresenter<V> {
-
+        void show(String title, String username, String password, String code);
     }
 }

@@ -80,14 +80,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> im
 
     @Override
     public boolean onLongClick(View v) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.popup_menu, null);
-        PopupWindow popupWin = new PopupWindow(mContext);
-        popupWin.setContentView(view);
-        popupWin.setOutsideTouchable(true);
-        popupWin.setClippingEnabled(true);
-        popupWin.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
-        popupWin.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
-        popupWin.showAsDropDown(v, 0, 0);
+//        View view = LayoutInflater.from(mContext).inflate(R.layout.popup_menu, null);
+//        PopupWindow popupWin = new PopupWindow(mContext);
+//        popupWin.setContentView(view);
+//        popupWin.setOutsideTouchable(true);
+//        popupWin.setClippingEnabled(true);
+//        popupWin.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
+//        popupWin.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
+//        popupWin.showAsDropDown(v, 0, 0);
         return true;
     }
 

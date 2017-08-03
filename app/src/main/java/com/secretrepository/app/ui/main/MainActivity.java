@@ -137,6 +137,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                 new UserAdapter.OnItemLongClickListener() {
                     @Override
                     public void onItemLongClick(View v, int pos, User user) {
+                        mPresenter.showUserInformation(user);
                     }
                 });
         mRecyclerView.setAdapter(mAdapter);
