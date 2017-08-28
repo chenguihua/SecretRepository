@@ -8,13 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 
 import com.secretrepository.app.R;
 import com.secretrepository.app.data.db.model.User;
 import com.secretrepository.app.ui.base.BaseActivity;
-import com.secretrepository.app.ui.Edit.EditActivity;
+import com.secretrepository.app.ui.edit.EditActivity;
 import com.secretrepository.app.ui.display.UserActivity;
 import com.secretrepository.app.ui.setting.SettingsActivity;
 import com.secretrepository.app.util.AppConstants;
@@ -50,8 +49,9 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        saveSecretKey(getIntent().getStringExtra(AppConstants.APP_LOGIN_SERIAL));
 
+        setContentView(R.layout.activity_main);
         getActivityComponent().inject(this);
         ButterKnife.bind(this);
         mPresenter.onAttach(this);
@@ -59,6 +59,8 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         // set up the toolbar
         setSupportActionBar(mToolBar);
         initRecycleViewWithAdapter();
+
+
     }
 
     @Override
@@ -96,13 +98,13 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
     @Override
     public void openEditActivity() {
-        Intent intent = EditActivity.getEntryIntent(this);
+        Intent intent = EditActivity.getEntryIntent(this, null);
         startActivity(intent);
     }
 
     @Override
     public void openUserActivity(User user) {
-        Intent intent = UserActivity.getEntryIntent(this, user, "");
+        Intent intent = UserActivity.getEntryIntent(this, user);
         startActivity(intent);
     }
 

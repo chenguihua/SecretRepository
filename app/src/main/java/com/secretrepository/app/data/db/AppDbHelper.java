@@ -27,7 +27,7 @@ public class AppDbHelper implements DbHelper{
     }
 
     @Override
-    public Observable<List<User>> loadUsers() {
+    public Observable<List<User>> queryUsers() {
         return Observable.fromCallable(new Callable<List<User>>() {
             @Override
             public List<User> call() throws Exception {
@@ -37,7 +37,17 @@ public class AppDbHelper implements DbHelper{
     }
 
     @Override
-    public Observable<Long> saveUser(final User user) {
+    public Observable<User> queryUser(final Long id) {
+        return Observable.fromCallable(new Callable<User>() {
+            @Override
+            public User call() throws Exception {
+                return mDaoSession.getUserDao().load(id);
+            }
+        });
+    }
+
+    @Override
+    public Observable<Long> insertUser(final User user) {
         return Observable.fromCallable(new Callable<Long>() {
             @Override
             public Long call() throws Exception {
@@ -46,4 +56,25 @@ public class AppDbHelper implements DbHelper{
         });
     }
 
+    @Override
+    public Observable<Boolean> deleteUser(final User user) {
+        return Observable.fromCallable(new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+               mDaoSession.getUserDao().deleteByKey(user.getId());
+                return Boolean.TRUE;
+            }
+        });
+    }
+
+    @Override
+    public Observable<Boolean> updateUser(final User user) {
+        return Observable.fromCallable(new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                mDaoSession.getUserDao().update(user);
+                return Boolean.TRUE;
+            }
+        });
+    }
 }

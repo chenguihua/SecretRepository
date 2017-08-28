@@ -28,7 +28,7 @@ public class MainPresenter<V extends MainContract.View> extends BasePresenter<V>
 
     @Override
     public void load() {
-        getDataManager().loadUsers().subscribeOn(Schedulers.io())
+        getDataManager().queryUsers().subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(new Consumer<List<User>>() {
             @Override

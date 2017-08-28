@@ -1,5 +1,6 @@
-package com.secretrepository.app.ui.Edit;
+package com.secretrepository.app.ui.edit;
 
+import com.secretrepository.app.data.db.model.User;
 import com.secretrepository.app.ui.base.MvpPresenter;
 import com.secretrepository.app.ui.base.MvpView;
 
@@ -14,6 +15,7 @@ public interface EditContract {
     }
 
     interface Presenter<V extends View> extends MvpPresenter<V> {
-        void submit(String username, String password, String description);
+        void editNew(String key, User user);
+        void editOld(String key, User user);
     }
 }

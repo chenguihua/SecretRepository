@@ -32,37 +32,37 @@ public class LoginPresenter<V extends LoginContract.View> extends BasePresenter<
 
     @Override
     public void doLogin(String username, String password) {
-//        if (checkNotNull(username) || checkNotNull(password)) {
-//            getView().showErrorLoginInfo("The username or password can't be null");
-//            return;
-//        }
-//
-//        boolean isFirstTimeLogin = TextUtils.isEmpty(mUsername);
-//        // first time to login, check the name and the password whether is legal.
-//        if (isFirstTimeLogin) {
-//            LegalFormatCheck checker = new LegalFormatCheck();
-//            int errorId = LegalFormatCheck.NO_ERROR;
-//            if ((errorId = checker.check(username)) != LegalFormatCheck.NO_ERROR
-//                    && (errorId = checker.check(password)) != LegalFormatCheck.NO_ERROR)
-//            {
-//                getView().showErrorLoginInfo(getErrorString(errorId));
-//                return;
-//            }
-//            String serial = register(username, password);
-//            Log.d(TAG, "doLogin: serial " + serial);
-//            if (!TextUtils.isEmpty(serial)) {
-//                getView().openMainActivity(serial);
-//            }
-//        } else {
-//            String serial = login(username, password);
-//            if (!TextUtils.isEmpty(serial)) {
-//                Log.d(TAG, "doLogin: serial is " + serial);
-//                getView().openMainActivity(serial);
-//            } else {
-//                getView().showErrorLoginInfo("incorrect login.");
-//            }
-//
-//        }
+        if (checkNotNull(username) || checkNotNull(password)) {
+            getView().showErrorLoginInfo("The username or password can't be null");
+            return;
+        }
+
+        boolean isFirstTimeLogin = TextUtils.isEmpty(mUsername);
+        // first time to login, check the name and the password whether is legal.
+        if (isFirstTimeLogin) {
+            LegalFormatCheck checker = new LegalFormatCheck();
+            int errorId = LegalFormatCheck.NO_ERROR;
+            if ((errorId = checker.check(username)) != LegalFormatCheck.NO_ERROR
+                    && (errorId = checker.check(password)) != LegalFormatCheck.NO_ERROR)
+            {
+                getView().showErrorLoginInfo(getErrorString(errorId));
+                return;
+            }
+            String serial = register(username, password);
+            Log.d(TAG, "doLogin: serial " + serial);
+            if (!TextUtils.isEmpty(serial)) {
+                getView().openMainActivity(serial);
+            }
+        } else {
+            String serial = login(username, password);
+            if (!TextUtils.isEmpty(serial)) {
+                Log.d(TAG, "doLogin: serial is " + serial);
+                getView().openMainActivity(serial);
+            } else {
+                getView().showErrorLoginInfo("incorrect login.");
+            }
+
+        }
 
     }
 
@@ -87,10 +87,6 @@ public class LoginPresenter<V extends LoginContract.View> extends BasePresenter<
         return false;
     }
 
-//    private native String register(String username, String password);
-//    private native String login(String username, String password);
-//
-//    static {
-//        System.loadLibrary("secret-lib");
-//    }
+    private native String register(String username, String password);
+    private native String login(String username, String password);
 }

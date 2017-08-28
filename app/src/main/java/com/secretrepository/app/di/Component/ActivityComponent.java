@@ -2,7 +2,7 @@ package com.secretrepository.app.di.Component;
 
 import com.secretrepository.app.di.PreActivity;
 import com.secretrepository.app.di.module.ActivityModule;
-import com.secretrepository.app.ui.Edit.EditActivity;
+import com.secretrepository.app.ui.edit.EditActivity;
 import com.secretrepository.app.ui.display.UserActivity;
 import com.secretrepository.app.ui.login.LoginActivity;
 import com.secretrepository.app.ui.main.MainActivity;

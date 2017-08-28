@@ -47,12 +47,27 @@ public class AppDataManager implements DataManager{
     }
 
     @Override
-    public Observable<List<User>> loadUsers() {
-        return mDbHelper.loadUsers();
+    public Observable<List<User>> queryUsers() {
+        return mDbHelper.queryUsers();
     }
 
     @Override
-    public Observable<Long> saveUser(User user) {
-        return mDbHelper.saveUser(user);
+    public Observable<User> queryUser(Long id) {
+        return mDbHelper.queryUser(id);
+    }
+
+    @Override
+    public Observable<Long> insertUser(User user) {
+        return mDbHelper.insertUser(user);
+    }
+
+    @Override
+    public Observable<Boolean> deleteUser(User user) {
+        return mDbHelper.deleteUser(user);
+    }
+
+    @Override
+    public Observable<Boolean> updateUser(User user) {
+        return mDbHelper.updateUser(user);
     }
 }

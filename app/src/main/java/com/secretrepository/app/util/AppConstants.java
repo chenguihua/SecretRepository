@@ -10,6 +10,9 @@ public class AppConstants {
 
     public static final String APP_LOGIN_SERIAL = ":login_generate";
 
+    public static final boolean DEBUG_NO_LOGIN = false;
+    public static final boolean ENCRYPT_ENABLE = true;
+
     private AppConstants() {
     }
 }

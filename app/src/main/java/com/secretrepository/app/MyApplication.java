@@ -14,6 +14,10 @@ public class MyApplication extends Application {
 
     private ApplicationComponent mApplicationComponent;
 
+    static {
+        System.loadLibrary("secret-lib");
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();

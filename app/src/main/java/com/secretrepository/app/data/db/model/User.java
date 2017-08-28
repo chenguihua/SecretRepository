@@ -1,5 +1,8 @@
 package com.secretrepository.app.data.db.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Property;
@@ -10,7 +13,7 @@ import org.greenrobot.greendao.annotation.Generated;
  */
 
 @Entity(nameInDb = "user")
-public class User {
+public class User implements Parcelable{
 
     @Id(autoincrement = true)
     private Long id;
@@ -66,5 +69,37 @@ public class User {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel source) {
+            return new User(source);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
+
+    public User(Parcel in) {
+        id = in.readLong();
+        username = in.readString();
+        password = in.readString();
+        description = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(id);
+        dest.writeString(username);
+        dest.writeString(password);
+        dest.writeString(description);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 }
